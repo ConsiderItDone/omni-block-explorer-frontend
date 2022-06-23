@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "components": [
+        "components"
+      ],
+      "queries": [
+        "api/queries"
+      ],
+      "queries/*": [
+        "api/queries/*"
+      ],
+      "images/*": [
+        "images/*"
+      ],
+      "types": [
+        "types"
+      ],
+      "layouts": [
+        "layouts"
+      ],
+      "utils/*": [
+        "utils/*"
+      ],
+      "charts": [
+        "charts/*"
+      ],
+      "styles": [
+        "styles/*"
+      ],
+      "themes": [
+        "themes/*"
+      ]
+    }
+  }
+}

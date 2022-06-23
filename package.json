@@ -1,0 +1,56 @@
+{
+  "name": "omni-block-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.10.18",
+    "@apollo/client": "^3.3.16",
+    "@craco/craco": "^6.4.3",
+    "@emotion/react": "^11.9.3",
+    "@mdx-js/react": "^2.1.2",
+    "@polkadot/util-crypto": "^9.6.1",
+    "@types/node": "^16.11.41",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "antd": "^4.15.2",
+    "apollo-boost": "^0.4.9",
+    "craco-antd": "^2.0.0",
+    "craco-stylus": "^1.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "graphql": "^16.5.0",
+    "query-string": "^7.1.1",
+    "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "stylus": "^0.58.1",
+    "stylus-loader": "^7.0.0",
+    "subscriptions-transport-ws": "^0.11.0",
+    "theme-ui": "^0.14.6",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "craco-alias": "^3.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.7.1"
+  }
+}

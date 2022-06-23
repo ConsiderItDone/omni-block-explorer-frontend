@@ -1,0 +1,16 @@
+node_modules
+npm-debug.*
+static/*hot-update*
+static/*bundle*
+static/meta.json
+static/index.html
+build/*
+build
+package-lock.json
+.env
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+.idea

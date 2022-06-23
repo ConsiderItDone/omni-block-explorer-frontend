@@ -1,0 +1,117 @@
+@import '../../styles/variables.styl'
+
+.filterForm
+  font-weight 600
+  width 100%
+  h2
+    color white
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+  .base
+    display flex
+    justify-content: space-between
+    flex-wrap: wrap
+  .row
+    display flex
+    gap: 6px
+  .ant-input
+    height: 42px
+    width 100%
+    border-radius: 8px
+  .ant-picker
+    height 42px
+    width: 185px
+    background-color transparent
+    border-radius: 8px
+    border 1px solid #27333F
+    &:hover
+      border 1px solid $green
+    .ant-picker-input
+      input
+        color white
+  .ant-picker-focused
+    box-shadow: none
+    border 1px solid $green
+  .ant-picker-suffix
+    color white
+  .ant-picker-clear
+    background-color $window-dark
+    color white
+  .ant-input-group
+    width: fit-content
+  .ant-form-item-label
+    display flex
+    label
+      color white
+      align-self: center
+  .ant-select
+    width 160px
+    .ant-select-selector
+      height 40px
+      background-color transparent
+      border 1px solid #27333F
+      border-radius: 8px
+      color white
+      font-weight 600
+      padding 9px 16px
+      @media(max-width: 576px)
+        height: 48px
+      .ant-select-selection-item
+        align-self: center
+        &::before
+          margin-right 8px
+    .ant-select-arrow
+      color  $gray
+.addon
+  color $gray
+
+.closeBtn
+  margin-bottom 16px
+.filter-mobile
+  color white
+  background-color $window-dark
+  position fixed
+  padding 32px 16px
+  top 0
+  left 0
+  height 100vh
+  width 100%
+  transform: translateY(-100%)
+  transition: .3s transform
+  z-index 100
+  .ant-form
+    .ant-btn
+      width 100%
+      span
+        margin 0 auto
+.filter-mobile.active
+  transform: translateY(0)
+  overscroll-behavior: contain ;
+  .ant-select.ant-select-single.ant-select-show-arrow
+    width 100%
+  .ant-picker
+    width 100%
+    height: 48px
+  .ant-form-item
+    margin-bottom 16px
+    @media(max-width: 576px)
+      height: 48px
+  .ant-input, .ant-btn
+      height: 48px
+
+
+
+.label-event, .label-module, .label-call, .label-sign
+  .ant-select-selection-item
+    &:before
+      color $gray
+
+.label-call .ant-select-selection-item:before
+  content:'Call '
+.label-sign .ant-select-selection-item:before
+  content:'Sign '
+.label-module .ant-select-selection-item:before
+  content:'Module '
+.label-event .ant-select-selection-item:before
+  content:'Event '

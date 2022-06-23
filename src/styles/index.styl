@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import './variables.styl'
+@import './mixins.styl'
+
+
+
+
+.layout
+  min-height: 100vh
+  display flex
+  width 100%
+  main
+    width 100%
+    overflow hidden
+    padding 40px
+    margin-bottom auto
+    padding-bottom 35px
+    @media(max-width:768px)
+      padding 32px 16px
+
+g[aria-labelledby]
+  display none 
+
+.tabs
+  .ant-tabs-nav
+    &:before
+      border-bottom 2px solid $green !important
+  .ant-tabs-nav-operations
+    .ant-tabs-nav-more
+      color: white
+      &:after
+        display none
+.tooltip
+  cursor: help
+.timestamp
+  overflow: hidden
+  text-overflow: ellipsis
+.ant-spin.ant-spin-spinning
+  display block
+  margin 0 auto
+.spin-container
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+.btn
+  display block
+  padding 8px 16px
+  border-radius 4px
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+.fullWidth
+  width: 100%
+.ant-form-item
+  height 100%
+.ant-form-item-label
+  label
+    height 100%
+    color white
+.ant-form-item-control-input, .ant-form-item-control-input-content
+  height 100%
+.ant-input, .ant-input-affix-wrapper
+  background-color transparent
+  border 1px solid #27333F
+  border-radius: 6px;
+  color white
+  height 100%
+  &:hover
+    border-color: $green !important
+  .ant-input-prefix
+    color $gray
+.ant-input-wrapper
+  .ant-input
+    border none !important
+  .ant-input-group-addon
+    border-color $green
+    button
+      padding-right 5px
+  &:hover
+    border-color $green
+.ant-input:focus, .ant-input-focused
+  border-color:  $green
+  box-shadow: none !important
+
+.ant-form-inline
+  align-items: center
+
+.ant-select-focused, .ant-select-open
+  .ant-select-selector
+    border-color: $green !important
+    box-shadow: none !important
+.ant-select, .ant-select-selector
+  &:hover
+    border-color: $green !important
+  &:active, &:focus
+    border-color: $green !important
+.btn-dark
+  background-color #E4E8EF
+  color black
+.ant-tabs
+    background-color $window-dark !important
+  .ant-tabs-content-holder, .ant-tabs-nav
+    background-color $window-dark
+.ant-picker-dropdown
+  .ant-picker-panel-container
+    filter: drop-shadow(0px 4px 32px #000000);
+    border-radius: 8px;
+    background-color transparent
+    .ant-picker-panel
+      background-color $window-dark
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 1);
+      border-bottom: none
+      .ant-picker-date-panel
+        border none
+        .ant-picker-header
+          border none
+          *
+            color white
+        .ant-picker-body
+            table
+              td
+                color white
+              th
+                color $gray
+              .ant-picker-cell-disabled:before
+                background-color transparent
+              .ant-picker-cell-disabled > .ant-picker-cell-inner
+                color $gray
+                &:before
+                  background-color transparent
+              .ant-picker-cell-today > .ant-picker-cell-inner
+                color white
+                background-color #27333F
+              .ant-picker-cell-inner 
+                &:before
+                  border none !important
+              .ant-picker-cell-selected > .ant-picker-cell-inner
+                background-color $green
+              .ant-picker-cell:hover
+                 .ant-picker-cell-inner
+                   background-color $gray
+
+      .ant-picker-footer
+        border none
+        a
+          color $green
+
+.ant-btn.dark
+  background-color $green
+  color white
+.custom_table
+  background-color $window-dark
+  color white
+  border-radius: 24px
+  padding 23px 30px 12px
+  @media(max-width:768px)
+    padding 22px 17px 30px
+.ant-badge
+  margin-left 8px
+  height 18px
+  width 18px
+  .ant-badge-count
+    background-color $green
+    box-shadow: none
+    padding 3px
+    border-radius: 50%
+    .ant-scroll-number-only
+      display block
+    p
+      line-height 15px
+.tabs
+  margin-top 40px !important
+  border-radius: 8px
+  padding 30px !important
+  border-radius: 24px
+  @media (max-width:768px)
+    padding: 22px 16px !important
+  .ant-tabs-nav
+    .ant-tabs-nav-wrap
+      background-color $window-dark
+      .ant-tabs-nav-list
+        .ant-tabs-ink-bar
+          background-color $green
+        .ant-tabs-tab
+          padding 8px 16px
+          margin-left 0
+          .ant-tabs-tab-btn
+            color white
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            span
+              color $gray
+              margin-left 6px
+        .ant-tabs-tab-active
+          .ant-tabs-tab-btn
+            //color $green
+  .ant-table-wrapper
+    padding 0
+  
+.ellipsis
+  overflow: hidden
+  text-overflow: ellipsis
