@@ -61,7 +61,7 @@ export default <ThemeUIStyleObject>{
     color: '#fff',
   },
   'tbody.ant-table-tbody .ant-table-row .ant-table-cell a': {
-    color: 'primary',
+    color: 'white',
   },
   'tbody.ant-table-tbody .ant-table-row:last-child .ant-table-cell': {
     border: 'none',
