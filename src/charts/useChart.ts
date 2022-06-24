@@ -7,6 +7,7 @@ import React, { useLayoutEffect } from 'react';
 import { createLegend, styleChart } from './utils';
 import { generateExtrinsicChart } from './extrinsicsChart';
 import { generateTransfersChart } from './transfersChart';
+import { useThemeUI } from 'theme-ui';
 
 const chartOperations = {
   common: generateCommonChartProperies,
@@ -23,10 +24,12 @@ export const useChart = (
   chartData: any,
   containerId = 'chartdiv',
 ): void => {
+  const { theme: themeUI } = useThemeUI();
+
   return useLayoutEffect(() => {
     const chart = am4core.create(containerId, am4charts.XYChart);
 
-    am4core.useTheme((theme) => am4themes_nodle(theme, process.env.REACT_APP_PRIMARY_COLOR));
+    am4core.useTheme((theme) => am4themes_nodle(theme, themeUI.rawColors.primary as string));
 
     chartOperations.common(chart);
     chartOperations[type](chart, chartData);

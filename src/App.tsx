@@ -18,7 +18,7 @@ const loadingNode = (
 );
 
 const App: FC = () => {
-  const theme = getTheme(process.env.REACT_APP_PRIMARY_COLOR || 'green');
+  const theme = getTheme(process.env.REACT_APP_PRIMARY_COLOR || 'steelblue');
 
   return (
     <ThemeProvider theme={theme}>
