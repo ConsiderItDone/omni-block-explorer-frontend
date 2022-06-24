@@ -9,8 +9,6 @@ import React, {
   useState,
 } from 'react';
 import './Overlay.styl';
-//eslint-disable-next-line
-const logo = require('images/logo.svg');
 
 interface IOverlayContext {
   overlayItem?: JSX.Element;

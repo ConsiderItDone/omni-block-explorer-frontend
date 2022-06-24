@@ -5,8 +5,8 @@ import { TransformedExtrinsicData } from './types';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { generateColumns } from 'utils/generators';
 import { renderTime } from 'utils/elements';
+import ImgOk from 'components/icons/ImgOk';
 /* eslint-disable @typescript-eslint/no-var-requires */
-const imgOk = require('images/ok.png');
 const imgNok = require('images/nok.png');
 
 const extrinsicTableItem = { id: '', block: '', hash: '', time: '', action: '', success: '' };
@@ -57,7 +57,7 @@ export const columns = generateColumns(extrinsicTableItem, {
     title: window?.innerWidth < RESPONSIVE_BREAKPOINTS.sm ? '' : 'Result',
     width: window?.innerWidth < RESPONSIVE_BREAKPOINTS.sm ? 25 : 45,
     align: 'right',
-    render: (success) => (success ? <img src={imgOk} alt="Successfull" /> : <img src={imgNok} alt="Unsuccessfull" />),
+    render: (success) => (success ? <ImgOk /> : <img src={imgNok} alt="Unsuccessfull" />),
   },
 });
 

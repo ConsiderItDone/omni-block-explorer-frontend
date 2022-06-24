@@ -8,8 +8,8 @@ import { generateColumns } from 'utils/generators';
 import { renderTime } from 'utils/elements';
 import { HomePage_blocks_items } from 'queries/__generated__/HomePage';
 import { NewBlocks_newBlock } from 'queries/__generated__/NewBlocks';
+import ImgOk from 'components/icons/ImgOk';
 /* eslint-disable @typescript-eslint/no-var-requires */
-const imgOk = require('images/ok.png');
 const imgPending = require('images/pending.png');
 
 const blockTableItem = {
@@ -57,7 +57,7 @@ export const columns = generateColumns(blockTableItem, {
     width: 45,
     title: 'Status',
     align: 'center',
-    render: (val) => <img src={val ? imgOk : imgPending} alt="status" />,
+    render: (val) => (val ? <ImgOk /> : <img src={imgPending} alt="status" />),
   },
 });
 
@@ -93,7 +93,7 @@ export const columnsMini = generateColumns(blockTableItemHome, {
     title: 'Status',
     width: 45,
     align: 'right',
-    render: (val) => <img src={val ? imgOk : imgPending} alt="status" />,
+    render: (val) => (val ? <ImgOk /> : <img src={imgPending} alt="status" />),
   },
 });
 
