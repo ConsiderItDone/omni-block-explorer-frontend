@@ -4,9 +4,6 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'utils/consts';
 import styles from './styles';
-//eslint-disable-next-line
-//@ts-ignore
-import logo from 'images/logo.svg';
 
 export const navigationItems = [
   {
@@ -52,7 +49,7 @@ export default React.memo(() => {
     <nav sx={styles.navigation}>
       <div className="logo">
         <Link to="/">
-          <img src={logo} />
+          <img src={process.env.REACT_APP_LOGO_SR} />
         </Link>
       </div>
       <div className="nav_menu">

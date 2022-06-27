@@ -6,9 +6,6 @@ import { Button } from 'antd';
 import { useRouter } from 'utils/hooks';
 import { OverlayContext } from 'components/Overlay/Overlay';
 import styles from './styles';
-//eslint-disable-next-line
-//@ts-ignore
-import logo from '../../images/logo.svg';
 
 export default React.memo(() => {
   const overlayContext = useContext(OverlayContext);
@@ -20,7 +17,7 @@ export default React.memo(() => {
       <nav className="mobile" onClick={(e) => e.stopPropagation()}>
         <div className="logo">
           <Link to="/" onClick={() => setOverlayActive(false)}>
-            <img src={logo} />
+            <img src={process.env.REACT_APP_LOGO_SRC} />
           </Link>
         </div>
         <div className="nav_menu">
