@@ -7,3 +7,4 @@ export { default as Home } from './Home/Home';
 export { default as TransfersTable } from './TransfersTable/TransfersTable';
 export { default as ExtrinsicsTable } from './ExtrinsicsTable/ExtrinsicsTable';
 export { default as EventsTable } from './EventsTable/EventsTable';
+export { default as ColorScheme } from './ColorScheme/ColorScheme';
