@@ -5,12 +5,13 @@ import { navigationItems } from '../Navigation/Navigation';
 import { Button } from 'antd';
 import { useRouter } from 'utils/hooks';
 import { OverlayContext } from 'components/Overlay/Overlay';
-import styles from './styles';
+import { useStyles } from './styles';
 
 export default React.memo(() => {
   const overlayContext = useContext(OverlayContext);
   const { setOverlayActive } = overlayContext;
   const { pathname } = useRouter();
+  const styles = useStyles();
 
   const navigation = useMemo(
     () => (

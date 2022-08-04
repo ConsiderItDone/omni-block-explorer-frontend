@@ -3,7 +3,7 @@ import React, { FC, useCallback } from 'react';
 import { Table as AntdTable, TableProps } from 'antd';
 import { useRouter } from 'utils/hooks';
 import queryString from 'query-string';
-import styles from './styles'
+import {useStyles} from './styles'
 
 //eslint-disable-next-line
 interface Props extends TableProps<any> {
@@ -12,6 +12,7 @@ interface Props extends TableProps<any> {
 }
 const Table: FC<Props> = (props) => {
   const { search, pathname, navigate, queryObj } = useRouter();
+  const styles = useStyles();
 
   const handlePageChange = useCallback(
     (page: number) => {

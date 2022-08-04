@@ -12,8 +12,8 @@ import {
   styleAxis,
 } from './utils';
 
-export const generateExtrinsicChart = (chart: am4charts.XYChart, chartData: any): void => {
-  createTitle(chart, 'Extrinsic History');
+export const generateExtrinsicChart = (chart: am4charts.XYChart, chartData: any, themeUI): void => {
+  createTitle(chart, 'Extrinsic History', themeUI);
   attachData(chart, chartData?.extrinsicsChartData);
 
   const dateAxis = chart.xAxes.push(new am4charts.DateAxis());

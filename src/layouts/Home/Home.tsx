@@ -23,7 +23,7 @@ import './Home.module.styl';
 import { transformAllocationData, columnsMini as allocationColumns } from 'layouts/AllocationsTable/util';
 import { numberWithCommas } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
-import styles from './styles';
+import { useStyles } from './styles';
 
 const useSubscriptionOnQuery = () => {
   const [blocks, setBlocks] = useState<(HomePage_blocks_items | NewBlocks_newBlock)[]>();
@@ -65,6 +65,7 @@ const useSubscriptionOnQuery = () => {
 
 export const LayoutHome: FC = () => {
   const { chainData, blocks, transfers, validators, allocations: allocRaw, loading } = useSubscriptionOnQuery();
+  const styles = useStyles();
 
   const blockss = blocks?.map(transformBlockItem);
   const transferss = transfers?.map(transformTransferData);

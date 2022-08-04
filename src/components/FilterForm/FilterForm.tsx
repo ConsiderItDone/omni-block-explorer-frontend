@@ -13,6 +13,7 @@ import { useRouter } from 'utils/hooks';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
 import styles from './styles';
+import { useThemeUI } from 'theme-ui';
 
 //eslint-disable-next-line
 const close = require('images/close.png');
@@ -202,6 +203,7 @@ const FilterForm: FC<FilterFormProps> = ({ title, titleAddon, mode, initialValue
     queryObj.dateStart || queryObj.dateEnd || queryObj.signer || queryObj.extrinsicHash,
   );
   const [mobileActive, setMobileActive] = useState<boolean>(false);
+  const { theme: themeUI } = useThemeUI();
 
   const onExpand = () => setExpanded((prev) => !prev);
 
@@ -264,7 +266,7 @@ const FilterForm: FC<FilterFormProps> = ({ title, titleAddon, mode, initialValue
         <Form {...formProps}>
           <div className="base">
             {title && (
-              <h2>
+              <h2 style={{color: String(themeUI.rawColors.text)}}>
                 {title}
                 {titleAddon && <span className="addon">{titleAddon}</span>}
               </h2>

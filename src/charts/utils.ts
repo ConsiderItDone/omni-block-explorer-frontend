@@ -43,7 +43,7 @@ export const styleAxis = (axis: am4charts.Axis) => {
   }
 };
 
-export const createTitle = (chart: am4charts.Chart, title) => {
+export const createTitle = (chart: am4charts.Chart, title, themeUI) => {
   const topContainer = chart.createChild(am4core.Container);
   topContainer.layout = 'absolute';
   topContainer.toBack();
@@ -55,7 +55,7 @@ export const createTitle = (chart: am4charts.Chart, title) => {
   axisTitle.fontSize = window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? 16 : 24;
   axisTitle.align = 'left';
   axisTitle.strokeWidth = 0;
-  axisTitle.fill = am4core.color('white');
+  axisTitle.fill = am4core.color(themeUI.rawColors.text);
 };
 export const createLegend = (chart: am4charts.Chart) => {
   chart.legend = new am4charts.Legend();

@@ -13,8 +13,8 @@ import {
 } from './utils';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
-export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any): void => {
-  createTitle(chart, 'Transfer History');
+export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any, themeUI): void => {
+  createTitle(chart, 'Transfer History', themeUI);
   chart.rightAxesContainer.layout = 'vertical';
   attachData(
     chart,

@@ -3,9 +3,9 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function am4themes_nodle(target, color = '#1DB989') {
-  const bgColor = am4core.color('#0F1C2A');
-  const columnColor = am4core.color(color);
+export function am4themes_nodle(target, themeUI) {
+  const bgColor = am4core.color(themeUI.rawColors['window-dark']);
+  const columnColor = am4core.color(themeUI.rawColors.primary || '#1DB989');
   const fontColor = am4core.color('#878D94');
 
   if (target instanceof am4charts.XYChart) {
