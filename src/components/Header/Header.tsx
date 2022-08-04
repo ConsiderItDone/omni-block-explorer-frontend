@@ -5,7 +5,7 @@ import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { useRouter } from 'utils/hooks';
 // import { capitalize } from 'utils/funcs';
 import { Button } from 'antd';
-import {useStyles} from './styles'
+import { useStyles } from './styles';
 
 //eslint-disable-next-line
 const arrowLeft = require('images/arrow-left.png');
@@ -25,7 +25,7 @@ export default React.memo(() => {
         ) : (
           <BurgerMenu />
         ))}
-      {(ROUTES[title] && <h2>{title.replace('_',' ')}</h2>) || <h2>Dashboard</h2>}
+      {(ROUTES[title] && <h2>{title.replace('_', ' ')}</h2>) || <h2>Dashboard</h2>}
       <Search />
     </header>
   );
