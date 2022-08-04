@@ -16,7 +16,7 @@ const ColorScheme: FC = () => {
 
   return (
     <div sx={styles}>
-      <Radio.Group onChange={onChange} value={colorMode}>
+      <Radio.Group onChange={onChange} value={colorMode} className="color_schemes_wrapper">
         <div className="custom_color_scheme dark_mode">
           <h2 className="dark_mode_text mode_label">Dark Mode</h2>
           <label className="mode_card">

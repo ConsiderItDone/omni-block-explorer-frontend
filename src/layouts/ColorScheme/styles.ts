@@ -1,6 +1,9 @@
 import { ThemeUIStyleObject } from 'theme-ui';
 
 export default <ThemeUIStyleObject>{
+  '.color_schemes_wrapper': {
+    width: '100%',
+  },
   '.custom_color_scheme': {
     borderRadius: '24px',
     padding: '32px',
