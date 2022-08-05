@@ -14,7 +14,7 @@ import { useErrorDisaply, useRouter } from 'utils/hooks';
 import { renderTime } from 'utils/elements';
 import { normalizeCurrency } from 'utils/funcs';
 import Popover from 'components/Popover/Popover';
-import styles from './styles'
+import { useStyles } from './styles';
 
 const { TabPane } = Tabs;
 interface Params {
@@ -24,6 +24,7 @@ interface Params {
 const Layout_Extrinsics: FC<Params> = () => {
   const { id } = useParams();
   const { search, pathname, navigate } = useRouter();
+  const styles = useStyles();
 
   const { data, loading, error } = useQuery<ExtrinsicsDetails>(EXTRINSICSDETAILTS, {
     variables: { id },

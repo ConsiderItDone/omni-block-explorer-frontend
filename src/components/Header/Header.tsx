@@ -3,16 +3,17 @@ import React from 'react';
 import { Search, BurgerMenu } from 'components';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { useRouter } from 'utils/hooks';
-import { capitalize } from 'utils/funcs';
+// import { capitalize } from 'utils/funcs';
 import { Button } from 'antd';
+import { useStyles } from './styles';
 
-import styles from './styles'
 //eslint-disable-next-line
 const arrowLeft = require('images/arrow-left.png');
 
 export default React.memo(() => {
   const { pathname, navigate } = useRouter();
   const title = pathname.split('/')[1] + 's';
+  const styles = useStyles();
 
   return (
     <header sx={styles}>
@@ -24,7 +25,7 @@ export default React.memo(() => {
         ) : (
           <BurgerMenu />
         ))}
-      {(ROUTES[title] && <h2>{capitalize(title)}</h2>) || <h2>Dashboard</h2>}
+      {(ROUTES[title] && <h2>{title.replace('_', ' ')}</h2>) || <h2>Dashboard</h2>}
       <Search />
     </header>
   );

@@ -13,8 +13,8 @@ import {
 } from './utils';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
-export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any): void => {
-  createTitle(chart, 'Transfer History');
+export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any, themeUI): void => {
+  createTitle(chart, 'Transfer History', themeUI);
   chart.rightAxesContainer.layout = 'vertical';
   attachData(
     chart,
@@ -35,7 +35,7 @@ export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any)
   valueAxis.numberFormatter.numberFormat = '#a';
   valueAxis.renderer.opposite = window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? true : false;
 
-  const series = createSeries(chart, { name: 'Sum' });
+  const series = createSeries(chart, themeUI, { name: 'Sum' });
   attachDataFieds(series, { dateX: 'date', valueY: 'amount', valueX: 'quantity' });
   addTooltip(series, true);
 
@@ -43,7 +43,7 @@ export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any)
   //valueAxis2.logarithmic = true;
   styleAxis(valueAxis2);
   valueAxis2.renderer.opposite = window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? true : false;
-  const series2 = createSeries(chart, {
+  const series2 = createSeries(chart, themeUI, {
     yAxis: valueAxis2,
     name: 'Number of Transactions',
     fill: am4core.color('#878D94'),
@@ -53,6 +53,6 @@ export const generateTransfersChart = (chart: am4charts.XYChart, chartData: any)
 
   attachDataFieds(series2, { dateX: 'date', valueY: 'quantity' });
 
-  createLegend(chart);
+  createLegend(chart, themeUI);
   createCursor(chart, { xAxis: dateAxis });
 };

@@ -17,6 +17,7 @@ export const ROUTES = {
   applications: '/application',
   allocations: '/allocation',
   omnigraph: '/network',
+  color_schemes: '/color_scheme',
 };
 
 export const SI: { power: number; text: string; value: string }[] = [
