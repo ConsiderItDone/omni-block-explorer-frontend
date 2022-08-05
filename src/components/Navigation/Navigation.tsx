@@ -9,6 +9,7 @@ export const navigationItems = [
   {
     title: 'Blockchain',
     items: {
+      OmniGraph: ROUTES.omnigraph,
       Blocks: ROUTES.blocks,
       Extrinsics: ROUTES.extrinsics,
       Transfers: ROUTES.transfers,

@@ -16,6 +16,7 @@ export const ROUTES = {
   certificates: '/certificate',
   applications: '/application',
   allocations: '/allocation',
+  omnigraph: '/network',
   color_schemes: '/color_scheme',
 };
 
