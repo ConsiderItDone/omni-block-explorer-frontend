@@ -16,6 +16,7 @@ export const ROUTES = {
   certificates: '/certificate',
   applications: '/application',
   allocations: '/allocation',
+  omnigraph: '/network',
 };
 
 export const SI: { power: number; text: string; value: string }[] = [
