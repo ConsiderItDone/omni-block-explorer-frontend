@@ -5,15 +5,11 @@ import 'graphiql/graphiql.min.css';
 //import './codemirror.css'; // or add theme from https://codemirror.net/5/theme/ to public/index.html <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.23.0/theme/${theme}.css" />
 
 const defaultQuery = `query {
-  allAccounts {
-    nodes {
-      address
-    }
-  }
+  
 }`;
 
 const fetcher = async (graphQLParams) => {
-  const data = await fetch('http://localhost:4000', {
+  const data = await fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
