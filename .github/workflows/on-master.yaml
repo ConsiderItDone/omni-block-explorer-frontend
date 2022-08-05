@@ -1,51 +1,29 @@
-name: Docker build
+name: Build & Push
 
 on:
   push:
     branches:
-      - main
+      - master
+      - cicd
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15.x]
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn lint
-      - run: yarn build
   build:
     name: Run docker build
     runs-on: ubuntu-latest
+    outputs:
+      docker_tag: ${{steps.vars.outputs.tag}}
     steps:
       - uses: actions/checkout@v2
-      - name: Run docker build
-        run: make docker-build
-  publish:
-    if: ${{ github.repository_owner == 'NodleCode' }}
-    name: Publish docker image to Google Container Registry
-    runs-on: ubuntu-latest
-    steps:
       - name: Get the version
         id: vars
-        run: echo ::set-output name=sha::$(echo ${GITHUB_SHA:0:7})
-      - uses: actions/checkout@v2
-      - name: Run docker build
-        run: make docker-build HTTP_ENDPOINT_ARG=${{ secrets.HTTP_ENDPOINT_TEST }} WS_ENDPOINT_ARG=${{ secrets.WS_ENDPOINT_TEST }}
-      - run: docker tag nodle-frontend gcr.io/${{ secrets.GCP_PROJECT_ID_TEST }}/frontend:${{steps.vars.outputs.sha}}
-      - name: Login to GCP
-        uses: google-github-actions/setup-gcloud@v0
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
+      - name: Build the Docker image
+        run: docker build -t dev-app:${{steps.vars.outputs.tag}} .
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID_TEST }}
-          service_account_key: ${{ secrets.GCP_CREDENTIALS_TEST }}
-          export_default_credentials: true
-      - name: Configure Docker
-        run: gcloud auth configure-docker --quiet
-      - name: Push Docker image
-        run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID_TEST }}/frontend:${{steps.vars.outputs.sha}}
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: us-east-1
+          image: dev-app:${{steps.vars.outputs.tag}}
