@@ -19,6 +19,7 @@
     "eslint-config-prettier": "^8.5.0",
     "graphiql": "^1.11.0",
     "graphql": "^16.5.0",
+    "graphql-ws": "^5.9.1",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
