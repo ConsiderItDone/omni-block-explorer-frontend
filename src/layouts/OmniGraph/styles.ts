@@ -4,13 +4,22 @@ export default {
   display: 'flex',
   flexDirection: 'column',
   gap: '32px',
-  color: 'white',
+  color: 'text',
   '.graphiql-container': {
+    color: 'text',
     minHeight: '650px',
     '.topBar': {
       background: 'transparent',
+      height: 'fit-content',
     },
-    color: 'red',
+    '.docExplorerShow': {
+      background: 'transparent',
+      color: 'text',
+      borderLeft: 'none',
+      '::before': {
+        borderColor: 'text',
+      },
+    },
     '.editor-drag-bar': {
       background: 'transparent',
       borderRight: 'none',
@@ -25,13 +34,37 @@ export default {
     '.secondary-editor-title': {
       background: 'transparent',
       '.variable-editor-title-text': {
-        color: 'white',
+        color: 'text',
       },
     },
     '.resultWrap': {
       '.CodeMirror': {
         '.CodeMirror-gutters': {
           background: 'transparent',
+        },
+      },
+    },
+    '.docExplorerWrap': {
+      background: 'window-dark',
+      border: '1px solid ',
+      borderColor: 'gray',
+      '.doc-explorer, .doc-explorer-contents': {
+        background: 'window-dark',
+      },
+      '.doc-explorer-title-bar': {
+        alignItems: 'center',
+        '.doc-explorer-title': { overflow: 'none' },
+        '.docExplorerHide': {
+          color: 'text',
+        },
+      },
+      '.doc-explorer-contents': {
+        borderTop: 'none',
+        '.search-box': {
+          input: {
+            background: 'transparent',
+            color: 'text',
+          },
         },
       },
     },
@@ -43,7 +76,7 @@ export default {
     p: '26px 32px 32px',
     h3: {
       fontSize: '24px',
-      color: 'white',
+      color: 'text',
       lineHeight: '32px',
       mb: 0,
     },
@@ -89,6 +122,17 @@ export default {
           justifyContent: 'space-between',
           gap: '24px',
           paddingTop: '24px',
+        },
+      },
+    },
+  },
+  '.playground': {
+    '.body': {
+      '>div.ant-tabs': {
+        padding: '0 !important',
+        m: '0 !important',
+        '.ant-tabs-nav': {
+          mb: 0,
         },
       },
     },

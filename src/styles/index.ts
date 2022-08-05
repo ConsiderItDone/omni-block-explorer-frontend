@@ -206,6 +206,11 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
     fontSize: '16px',
     lineHeight: '20px',
   },
+  '.tabs .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab.ant-tabs-tab-active': {
+    '.ant-tabs-tab-btn': {
+      color: theme.colors.primary,
+    },
+  },
   '.tabs .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab .ant-tabs-tab-btn span': {
     color: theme.colors.gray,
     marginLeft: '6px',

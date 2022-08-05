@@ -4,8 +4,6 @@ import { Tabs } from 'antd';
 import { Copy } from 'components';
 import styles from './styles';
 import { useRouter } from 'utils/hooks';
-//import Playground from './Playground';
-import PG from './PG';
 import Playground from './Playground';
 
 const { TabPane } = Tabs;
@@ -104,12 +102,12 @@ const OmniGraph: FC = () => {
           </div>
         </div>
       </div>
-      <div className="panel">
+      <div className="panel playground">
         <div className="head">
           <h3>Playground</h3>
         </div>
         <div className="body">
-          <Tabs activeKey={activeTab} onChange={handleTabChange} className="tab">
+          <Tabs activeKey={activeTab} onChange={handleTabChange} className="tabs">
             <TabPane tab="Playground" key={TABS.PLAYGROUND}>
               <Playground />
             </TabPane>
