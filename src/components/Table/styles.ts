@@ -106,10 +106,11 @@ export const useStyles = () => {
         backgroundColor: 'window-dark',
         color: themeUI.colors.text,
       },
-      '.ant-pagination li:hover,\n.ant-pagination li>button.ant-pagination-item-link:hover,\n.ant-pagination li>a:hover': {
-        color: 'primary',
-        borderColor: 'primary',
-      },
+      '.ant-pagination li:hover,\n.ant-pagination li>button.ant-pagination-item-link:hover,\n.ant-pagination li>a:hover':
+        {
+          color: 'primary',
+          borderColor: 'primary',
+        },
       '.ant-pagination .ant-pagination-item-active': { borderColor: 'primary' },
       '.ant-pagination .ant-pagination-item-active>*': { color: 'primary' },
       '.ant-table-placeholder .ant-table-cell:hover': {

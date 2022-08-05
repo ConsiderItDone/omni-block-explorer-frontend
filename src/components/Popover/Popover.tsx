@@ -14,7 +14,9 @@ interface PopoverProps {
 export default ({ title, content, placement }: PopoverProps): JSX.Element => {
   return (
     <Popover content={content} overlayClassName="popover-overlay" placement={placement}>
-      <button sx={style.btn} className="btn-popover">{title}</button>
+      <button sx={style.btn} className="btn-popover">
+        {title}
+      </button>
     </Popover>
   );
 };

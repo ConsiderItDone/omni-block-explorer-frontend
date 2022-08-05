@@ -1,4 +1,4 @@
-import { ThemeUIStyleObject } from "theme-ui";
+import { ThemeUIStyleObject } from 'theme-ui';
 
 export default <ThemeUIStyleObject>{
   padding: '2px 6px 3px',

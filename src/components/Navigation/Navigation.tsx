@@ -19,7 +19,7 @@ export const navigationItems = [
     },
   },
   { title: 'Nodle', items: { 'Root Certificate': ROUTES.certificates, Applications: ROUTES.applications } },
-  { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes, } },
+  { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
 ];
 export default React.memo(() => {
   const { pathname } = useLocation();

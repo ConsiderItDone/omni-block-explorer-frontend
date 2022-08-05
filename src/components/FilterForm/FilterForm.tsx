@@ -267,7 +267,7 @@ const FilterForm: FC<FilterFormProps> = ({ title, titleAddon, mode, initialValue
         <Form {...formProps}>
           <div className="base">
             {title && (
-              <h2 style={{color: String(themeUI.rawColors.text)}}>
+              <h2 style={{ color: String(themeUI.rawColors.text) }}>
                 {title}
                 {titleAddon && <span className="addon">{titleAddon}</span>}
               </h2>

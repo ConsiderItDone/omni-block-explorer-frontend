@@ -3,7 +3,7 @@ import React, { FC, useCallback } from 'react';
 import { Table as AntdTable, TableProps } from 'antd';
 import { useRouter } from 'utils/hooks';
 import queryString from 'query-string';
-import {useStyles} from './styles'
+import { useStyles } from './styles';
 
 //eslint-disable-next-line
 interface Props extends TableProps<any> {
@@ -24,7 +24,7 @@ const Table: FC<Props> = (props) => {
 
   return (
     <AntdTable
-    sx={styles}
+      sx={styles}
       {...props}
       onChange={(pagination) => handlePageChange(pagination.current)}
       title={() => <div className="table_title">{props.header}</div>}

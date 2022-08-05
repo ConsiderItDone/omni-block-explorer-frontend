@@ -33,7 +33,7 @@ export const useStyles = () => {
         },
         '.nav_menu .nav_list .nav_item a': { color: themeUI.colors.gray },
         '.nav_menu .nav_list .nav_item a.active': { color: themeUI.colors.primary },
-        '.nav_header_title': {color: themeUI.colors.text},
+        '.nav_header_title': { color: themeUI.colors.text },
       },
       burger: <ThemeUIStyleObject>{
         display: ['none', 'flex'],
@@ -43,7 +43,7 @@ export const useStyles = () => {
         width: '48px !important',
         flexDirection: 'column',
         justifyContent: 'space-between',
-    
+
         '>div': {
           height: '2px',
           width: '16px',

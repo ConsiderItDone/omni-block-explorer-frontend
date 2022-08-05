@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useThemeUI, ThemeUIStyleObject } from 'theme-ui';
-import { useStyles as useExtrinsicStyles} from './styles';
+import { useStyles as useExtrinsicStyles } from './styles';
 
 export const useStyles = () => {
   const { theme: themeUI } = useThemeUI();
@@ -49,7 +49,7 @@ export const useStyles = () => {
             borderTop: '1px solid #27333f',
             borderBottom: '1px solid #27333f',
           },
-    
+
           '.custom_table.extrinsic .head .primary': {
             width: '100%',
             justifyContent: 'space-between',
