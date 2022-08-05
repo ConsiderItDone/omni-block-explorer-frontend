@@ -57,7 +57,7 @@ export const createTitle = (chart: am4charts.Chart, title, themeUI) => {
   axisTitle.strokeWidth = 0;
   axisTitle.fill = am4core.color(themeUI.rawColors.text);
 };
-export const createLegend = (chart: am4charts.Chart) => {
+export const createLegend = (chart: am4charts.Chart, themeUI) => {
   chart.legend = new am4charts.Legend();
   chart.legend.position = window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? 'bottom' : 'top';
 
@@ -66,7 +66,7 @@ export const createLegend = (chart: am4charts.Chart) => {
   marker?.cornerRadius(12, 12, 12, 12);
   chart.legend.markers.template.width = 8;
   chart.legend.markers.template.height = 8;
-  chart.legend.labels.template.fill = am4core.color('white');
+  chart.legend.labels.template.fill = am4core.color(themeUI.rawColors.text);
 };
 export const styleChart = (chart: am4charts.XYChart) => {
   window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? chart.padding(22, 16, 16, 16) : chart.padding(30, 30, 25, 30);
@@ -75,10 +75,10 @@ export const styleChart = (chart: am4charts.XYChart) => {
   chart.fontFamily = 'Inter';
 };
 
-export const attachSeriesHoverEffect = (series: am4charts.ColumnSeries) => {
+export const attachSeriesHoverEffect = (series: am4charts.ColumnSeries, themeUI) => {
   const seriesHoverState = series.columns.template.states.create('hover');
   seriesHoverState.properties.strokeWidth = 0;
-  seriesHoverState.properties.fill = am4core.color('white');
+  seriesHoverState.properties.fill = am4core.color(themeUI.rawColors.text);
 };
 
 export const createCursor = (chart: am4charts.XYChart, options?: Partial<am4charts.XYCursor>) => {
@@ -90,11 +90,11 @@ export const createCursor = (chart: am4charts.XYChart, options?: Partial<am4char
   Object.assign(cursor, options);
 };
 
-export const createSeries = (chart: am4charts.XYChart, options?: Partial<am4charts.ColumnSeries>) => {
+export const createSeries = (chart: am4charts.XYChart, themeUI, options?: Partial<am4charts.ColumnSeries>) => {
   const series = chart.series.push(new am4charts.ColumnSeries());
   series.clustered = false;
   Object.assign(series, options);
-  attachSeriesHoverEffect(series);
+  attachSeriesHoverEffect(series, themeUI);
   return series;
 };
 

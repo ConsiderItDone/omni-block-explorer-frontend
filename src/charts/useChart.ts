@@ -14,9 +14,9 @@ const chartOperations = {
   extrinsics: generateExtrinsicChart,
   transfers: generateTransfersChart,
 };
-function generateCommonChartProperies(chart: am4charts.XYChart) {
+function generateCommonChartProperies(chart: am4charts.XYChart, themeUI?) {
   styleChart(chart);
-  createLegend(chart);
+  createLegend(chart, themeUI);
 }
 export const useChart = (
   type: 'extrinsics' | 'transfers',
@@ -30,7 +30,7 @@ export const useChart = (
 
     am4core.useTheme((theme) => am4themes_nodle(theme, themeUI));
 
-    chartOperations.common(chart);
+    chartOperations.common(chart, themeUI);
     chartOperations[type](chart, chartData, themeUI);
 
     ref.current = chart;

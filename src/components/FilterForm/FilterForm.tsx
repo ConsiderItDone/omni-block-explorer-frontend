@@ -12,7 +12,7 @@ import moment from 'moment';
 import { useRouter } from 'utils/hooks';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
-import styles from './styles';
+import { useStyles } from './styles';
 import { useThemeUI } from 'theme-ui';
 
 //eslint-disable-next-line
@@ -204,6 +204,7 @@ const FilterForm: FC<FilterFormProps> = ({ title, titleAddon, mode, initialValue
   );
   const [mobileActive, setMobileActive] = useState<boolean>(false);
   const { theme: themeUI } = useThemeUI();
+  const styles = useStyles();
 
   const onExpand = () => setExpanded((prev) => !prev);
 

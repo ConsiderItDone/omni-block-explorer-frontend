@@ -44,7 +44,7 @@ export const useStyles = () => {
           marginBottom: '16px',
         },
         '*': {
-          color: 'white',
+          color: themeUI.colors.text,
         },
         '.title': {
           fontSize: '24px',

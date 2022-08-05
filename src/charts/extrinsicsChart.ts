@@ -27,10 +27,10 @@ export const generateExtrinsicChart = (chart: am4charts.XYChart, chartData: any,
   styleAxis(valueAxis);
   valueAxis.renderer.opposite = window.innerWidth <= RESPONSIVE_BREAKPOINTS.md ? true : false;
 
-  const series = createSeries(chart, { name: 'Quantity' });
+  const series = createSeries(chart, themeUI, { name: 'Quantity' });
   attachDataFieds(series, { dateX: 'date', valueY: 'quantity' });
   addTooltip(series);
 
   createCursor(chart, { xAxis: dateAxis });
-  createLegend(chart);
+  createLegend(chart, themeUI);
 };

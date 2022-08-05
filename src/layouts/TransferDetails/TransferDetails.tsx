@@ -11,7 +11,7 @@ import { ROUTES } from 'utils/consts';
 import { renderTime } from 'utils/elements';
 import { normalizeCurrency } from 'utils/funcs';
 import { useErrorDisaply, useRouter } from 'utils/hooks';
-import styles from './styles'
+import { useStyles } from './styles';
 
 interface Params {
   id: string;
@@ -24,6 +24,7 @@ const TransferDetails: FC<Params> = () => {
   const { data, loading, error } = useQuery<TransferDetails_type>(TRANSFERDETAILS, {
     variables: { blockNumber, extrinsicIndex, eventIndex },
   });
+  const styles = useStyles();
   useErrorDisaply(error);
 
   const transferData = useMemo(() => {

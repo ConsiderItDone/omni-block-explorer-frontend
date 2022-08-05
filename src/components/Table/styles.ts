@@ -63,10 +63,10 @@ export const useStyles = () => {
         paddingBottom: '9px !important',
       },
       'tbody.ant-table-tbody .ant-table-row .ant-table-cell': {
-        color: '#fff',
+        color: themeUI.colors.text,
       },
       'tbody.ant-table-tbody .ant-table-row .ant-table-cell a': {
-        color: 'white',
+        color: themeUI.colors.text,
       },
       'tbody.ant-table-tbody .ant-table-row:last-child .ant-table-cell': {
         border: 'none',
@@ -91,11 +91,11 @@ export const useStyles = () => {
       '.table_title .ant-form-item button': { height: '40px' },
       '.ant-pagination': { marginTop: '24px !important' },
       '.ant-pagination .ant-pagination-jump-prev,\n.ant-pagination .ant-pagination-jump-next': {
-        border: '1px solid #fff',
+        border: `1px solid ${themeUI.colors.text}`,
       },
       '.ant-pagination .ant-pagination-jump-prev .ant-pagination-item-ellipsis,\n.ant-pagination .ant-pagination-jump-next .ant-pagination-item-ellipsis':
         {
-          color: '#fff',
+          color: themeUI.colors.text,
         },
       '.ant-pagination .ant-pagination-jump-prev .ant-pagination-item-ellipsis:hover,\n.ant-pagination .ant-pagination-jump-next .ant-pagination-item-ellipsis:hover':
         {
@@ -104,7 +104,7 @@ export const useStyles = () => {
       '.ant-pagination .ant-pagination-options': { display: 'none' },
       '.ant-pagination li,\n.ant-pagination li>button.ant-pagination-item-link,\n.ant-pagination li>a': {
         backgroundColor: 'window-dark',
-        color: '#fff',
+        color: themeUI.colors.text,
       },
       '.ant-pagination li:hover,\n.ant-pagination li>button.ant-pagination-item-link:hover,\n.ant-pagination li>a:hover': {
         color: 'primary',
@@ -115,7 +115,7 @@ export const useStyles = () => {
       '.ant-table-placeholder .ant-table-cell:hover': {
         backgroundColor: '#000 !important',
       },
-      '.ant-table-placeholder .ant-empty': { color: '#fff' },
+      '.ant-table-placeholder .ant-empty': { color: themeUI.colors.text },
       '.cell-secondary.combined-2': {
         display: 'flex',
         justifyContent: 'space-between',

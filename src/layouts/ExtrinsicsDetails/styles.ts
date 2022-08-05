@@ -1,7 +1,12 @@
-import { ThemeUIStyleObject } from 'theme-ui';
+import { useMemo } from 'react';
+import { useThemeUI, ThemeUIStyleObject } from 'theme-ui';
 
-export default <ThemeUIStyleObject>{
-  padding: '23px 33px 33px',
+export const useStyles = () => {
+  const { theme: themeUI } = useThemeUI();
+
+  const styles = useMemo(() => {
+    return <ThemeUIStyleObject>{
+      padding: '23px 33px 33px',
   '@media (max-width: 768px)': {
     padding: '14px 16px 26px',
     '.head .primary': { gap: '0' },
@@ -46,7 +51,7 @@ export default <ThemeUIStyleObject>{
     color: 'gray',
   },
   '.head .primary h2,\n.head .primary a': {
-    color: '#fff',
+    color: themeUI.colors.text,
     fontSize: '32px',
     lineHeight: '40px',
   },
@@ -78,4 +83,8 @@ export default <ThemeUIStyleObject>{
     gap: '10px',
     wordBreak: 'break-all',
   },
+    };
+  }, [themeUI]);
+
+  return styles;
 };
