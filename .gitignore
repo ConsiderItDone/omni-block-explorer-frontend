@@ -8,6 +8,7 @@ build/*
 build
 package-lock.json
 .env
+.yarn
 
 ### macOS ###
 *.DS_Store

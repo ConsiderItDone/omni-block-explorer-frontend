@@ -34,6 +34,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "prettier": "prettier --write ./src",
+    "lint": "eslint ./src/**/*.{js,ts,tsx} --max-warnings=0 --fix",
     "eject": "react-scripts eject"
   },
   "browserslist": {

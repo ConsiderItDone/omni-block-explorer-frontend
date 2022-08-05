@@ -6,7 +6,11 @@ interface Props {
   expanded: boolean;
 }
 const Expandable: FC<PropsWithChildren<Props>> = ({ expanded, children }) => {
-  return <div sx={styles} className={`${expanded ? 'active' : ''}`}>{children}</div>;
+  return (
+    <div sx={styles} className={`${expanded ? 'active' : ''}`}>
+      {children}
+    </div>
+  );
 };
 
 export default Expandable;

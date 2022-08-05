@@ -16,6 +16,7 @@ export const ROUTES = {
   certificates: '/certificate',
   applications: '/application',
   allocations: '/allocation',
+  color_schemes: '/color_scheme',
 };
 
 export const SI: { power: number; text: string; value: string }[] = [

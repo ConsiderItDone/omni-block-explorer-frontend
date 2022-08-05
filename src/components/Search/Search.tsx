@@ -7,7 +7,7 @@ import { SEARCH } from 'queries';
 import { useNavigate } from 'react-router';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { changeAddressPrefix } from 'utils/funcs';
-import styles from './styles';
+import { useStyles } from './styles';
 
 const Search = Input.Search;
 /* eslint-disable @typescript-eslint/no-var-requires */
@@ -18,6 +18,8 @@ export default React.memo(() => {
   const [searchValue, setSearchValue] = useState<string>('');
   const inputRef = useRef(null);
   const [mobileActive, setMobileActive] = useState<boolean>(false);
+  const styles = useStyles();
+
   const { data, loading } = useQuery<SearchType>(SEARCH, {
     skip: !searchValue,
     errorPolicy: 'ignore',

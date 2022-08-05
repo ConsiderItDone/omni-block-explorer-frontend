@@ -7,37 +7,36 @@ import React, { useLayoutEffect } from 'react';
 import { createLegend, styleChart } from './utils';
 import { generateExtrinsicChart } from './extrinsicsChart';
 import { generateTransfersChart } from './transfersChart';
-import { useThemeUI } from 'theme-ui';
+import { Theme } from 'theme-ui';
 
 const chartOperations = {
   common: generateCommonChartProperies,
   extrinsics: generateExtrinsicChart,
   transfers: generateTransfersChart,
 };
-function generateCommonChartProperies(chart: am4charts.XYChart) {
+function generateCommonChartProperies(chart: am4charts.XYChart, themeUI?) {
   styleChart(chart);
-  createLegend(chart);
+  createLegend(chart, themeUI);
 }
 export const useChart = (
   type: 'extrinsics' | 'transfers',
   ref: React.MutableRefObject<any>,
   chartData: any,
+  themeUI: Theme,
   containerId = 'chartdiv',
 ): void => {
-  const { theme: themeUI } = useThemeUI();
-
   return useLayoutEffect(() => {
     const chart = am4core.create(containerId, am4charts.XYChart);
 
-    am4core.useTheme((theme) => am4themes_nodle(theme, themeUI.rawColors.primary as string));
+    am4core.useTheme((theme) => am4themes_nodle(theme, themeUI));
 
-    chartOperations.common(chart);
-    chartOperations[type](chart, chartData);
+    chartOperations.common(chart, themeUI);
+    chartOperations[type](chart, chartData, themeUI);
 
     ref.current = chart;
 
     return () => {
       ref.current.dispose();
     };
-  }, [chartData]);
+  }, [chartData, ref.current]);
 };

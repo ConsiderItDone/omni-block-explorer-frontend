@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'utils/consts';
-import styles from './styles';
+import { useStyles } from './styles';
 
 export const navigationItems = [
   {
@@ -19,16 +19,18 @@ export const navigationItems = [
     },
   },
   { title: 'Nodle', items: { 'Root Certificate': ROUTES.certificates, Applications: ROUTES.applications } },
+  { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
 ];
 export default React.memo(() => {
   const { pathname } = useLocation();
+  const styles = useStyles();
 
   const navigation = useMemo(
     () =>
       navigationItems.map((i) => (
         <div key={i.title}>
           <div className="divider" />
-          <h3 className="nav_header">{i.title}</h3>
+          <h3 className="nav_header nav_header_title">{i.title}</h3>
           {i.items && (
             <ul className="nav_list">
               {Object.keys(i.items).map((k) => (
@@ -54,7 +56,7 @@ export default React.memo(() => {
       </div>
       <div className="nav_menu">
         <h3 className="nav_header">
-          <Link to="/" className={`nav_header ${pathname === '/' ? 'active' : ''}`}>
+          <Link to="/" className={`nav_header_title nav_header ${pathname === '/' ? 'active' : ''}`}>
             Home
           </Link>
         </h3>
