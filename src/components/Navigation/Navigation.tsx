@@ -4,6 +4,8 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'utils/consts';
 import { useStyles } from './styles';
+//eslint-disable-next-line
+const logoConsider = require('images/logo_consider.png');
 
 export const navigationItems = [
   {
@@ -63,6 +65,7 @@ export default React.memo(() => {
         </h3>
         {navigation}
       </div>
+      <img className="bottom_logo" src={logoConsider} />
     </nav>
   );
 });
