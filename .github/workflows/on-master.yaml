@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - cicd
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
       - name: Build the Docker image
-        run: docker build -t dev-app:${{steps.vars.outputs.tag}} .
+        run: docker build -t dev-omni-front:${{steps.vars.outputs.tag}} .
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
@@ -25,47 +26,41 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-1
-          image: dev-app:${{steps.vars.outputs.tag}}
+          image: dev-omni-front:${{steps.vars.outputs.tag}}
 
-  # deploy:
-  #   name: Run helm upgrade
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   env:
-  #     PRIVATE_REGISTRY: "195973352180.dkr.ecr.us-east-1.amazonaws.com"
-  #     # ingress
-  #     HOST: "acala.demo.omnitech.one"
-  #     CERTIFICATE_ARN: ""
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: AWS Credentials
-  #       uses: aws-actions/configure-aws-credentials@v1
-  #       with:
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         aws-region: us-east-1
-  #     - name: Create & View env file
-  #       id: create-env
-  #       run: |
-  #         cat << EOF > .env.yaml
-  #         {
-  #           "ingress": {
-  #             "host": "${{ env.HOST }}",
-  #             "certificateArn": "${{ env.CERTIFICATE_ARN }}"
-  #           },
-  #           "cm": {
-  #             _
-  #           },
-  #           "secrets": {
-  #             _
-  #           }
-  #         }
-  #         EOF
-  #     - name: Helm deploy
-  #       uses: koslib/helm-eks-action@master
-  #       env:
-  #         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_DEV }}
-  #       with:
-  #         plugins: |
-  #           https://github.com/jkroepke/helm-secrets
-  #         command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-app -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-app --version 0.1.0 --set=app.image.repository=${{env.PRIVATE_REGISTRY}}/dev-app,app.image.tag=${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
+  deploy:
+    name: Run helm upgrade
+    runs-on: ubuntu-latest
+    needs: [build]
+    env:
+      PRIVATE_REGISTRY: "195973352180.dkr.ecr.us-east-1.amazonaws.com"
+      # ingress
+      HOST: "acala.demo.omnitech.one"
+      CERTIFICATE_ARN: "arn:aws:acm:us-east-1:195973352180:certificate/10f085d3-d873-4e80-81f5-d67eced8da13"
+    steps:
+      - uses: actions/checkout@v2
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Create & View env file
+        id: create-env
+        run: |
+          cat << EOF > .env.yaml
+          {
+            "ingress": {
+              "host": "${{ env.HOST }}",
+              "certificateArn": "${{ env.CERTIFICATE_ARN }}"
+            }
+          }
+          EOF
+      - name: Helm deploy
+        uses: koslib/helm-eks-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_DEV }}
+        with:
+          plugins: |
+            https://github.com/jkroepke/helm-secrets
+          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
