@@ -4,9 +4,35 @@ on:
   push:
     branches:
       - master
+      - cicd
+
+env:
+  ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
+  ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+  ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
+  ACALA_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
+  ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
+  NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
+  NODLE_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+  NODLE_REACT_APP_OMNI_SS58_FORMAT: 37
+  NODLE_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
+  NODLE_REACT_APP_PRIMARY_COLOR: "steelblue"
 
 jobs:
   build:
+    strategy:
+      matrix:
+        network: [acala, nodle]
+    - name: Create & View .env-${{ matrix.network }} file
+      id: create-env
+      run: |
+          cat << EOF > .env-${{ matrix.network }}
+          REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT
+          REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT
+          REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT
+          REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT
+          REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
+          EOF
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
@@ -16,8 +42,8 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
-      - name: Build the Docker image
-        run: docker build -t dev-omni-front:${{steps.vars.outputs.tag}} .
+      - name: Build the Docker image ${{ matrix.network }}
+        run: docker build --env-file .env-${{ matrix.network }} -t dev-omni-front:${{steps.vars.outputs.tag}} .
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
