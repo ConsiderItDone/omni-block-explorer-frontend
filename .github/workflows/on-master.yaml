@@ -23,9 +23,15 @@ jobs:
     strategy:
       matrix:
         network: [acala, nodle]
-    - name: Create & View .env-${{ matrix.network }} file
-      id: create-env
-      run: |
+    name: Run docker build
+    runs-on: ubuntu-latest
+    outputs:
+      docker_tag: ${{steps.vars.outputs.tag}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create & View .env-${{ matrix.network }} file
+        id: create-env
+        run: |
           cat << EOF > .env-${{ matrix.network }}
           REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT
           REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT
@@ -33,12 +39,6 @@ jobs:
           REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT
           REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
           EOF
-    name: Run docker build
-    runs-on: ubuntu-latest
-    outputs:
-      docker_tag: ${{steps.vars.outputs.tag}}
-    steps:
-      - uses: actions/checkout@v2
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
