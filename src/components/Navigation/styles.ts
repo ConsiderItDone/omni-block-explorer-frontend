@@ -34,6 +34,7 @@ export const useStyles = () => {
         '.nav_menu .nav_list .nav_item a': { color: themeUI.colors.gray },
         '.nav_menu .nav_list .nav_item a.active': { color: themeUI.colors.primary },
         '.nav_header_title': { color: themeUI.colors.text },
+        '.bottom_logo': { position: 'absolute', bottom: '40px' },
       },
       burger: <ThemeUIStyleObject>{
         display: ['none', 'flex'],
