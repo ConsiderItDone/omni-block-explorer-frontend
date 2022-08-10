@@ -22,7 +22,7 @@ jobs:
   build:
     strategy:
       matrix:
-        network: [acala, nodle]
+        network: [ACALA, NODLE]
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
