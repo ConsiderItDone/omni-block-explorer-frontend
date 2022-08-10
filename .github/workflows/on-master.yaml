@@ -11,33 +11,11 @@ jobs:
     strategy:
       matrix:
         network: [ACALA, NODLE]
-    # env:
-    #   ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-    #   ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
-    #   ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
-    #   ACALA_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
-    #   ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
-    #   NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-    #   NODLE_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
-    #   NODLE_REACT_APP_OMNI_SS58_FORMAT: 37
-    #   NODLE_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
-    #   NODLE_REACT_APP_PRIMARY_COLOR: "steelblue"
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
       docker_tag: ${{steps.vars.outputs.tag}}
     steps:
-        env:
-          ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-          ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
-          ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
-          ACALA_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
-          ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
-          NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-          NODLE_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
-          NODLE_REACT_APP_OMNI_SS58_FORMAT: 37
-          NODLE_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
-          NODLE_REACT_APP_PRIMARY_COLOR: "steelblue"
       - uses: actions/checkout@v2
       - name: Get the version
         id: vars
@@ -50,6 +28,17 @@ jobs:
             --build-arg REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT \
             --build-arg REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT \
             --build-arg REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
+        env:
+          ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
+          ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+          ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
+          ACALA_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
+          ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
+          NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
+          NODLE_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+          NODLE_REACT_APP_OMNI_SS58_FORMAT: 37
+          NODLE_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
+          NODLE_REACT_APP_PRIMARY_COLOR: "steelblue"
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
