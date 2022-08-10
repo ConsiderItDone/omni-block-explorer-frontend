@@ -32,11 +32,11 @@ jobs:
         id: create-env
         run: |
           cat << EOF > .env-${{ matrix.network }}
-          REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT
-          REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT
-          REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT
-          REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT
-          REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
+          REACT_APP_OMNI_SERVER_ENDPOINT=${{ ${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT }}
+          REACT_APP_OMNI_WS_ENDPOINT=${{ ${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT }}
+          REACT_APP_OMNI_SS58_FORMAT=${{ ${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT }}
+          REACT_APP_GRAPHQL_ENDPOINT=${{ ${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT }}
+          REACT_APP_PRIMARY_COLOR=${{ ${{ matrix.network }}_REACT_APP_PRIMARY_COLOR }}
           EOF
       - name: Get the version
         id: vars
