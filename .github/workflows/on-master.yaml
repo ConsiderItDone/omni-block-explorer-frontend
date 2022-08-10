@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        network: [ACALA, NODLE]
+        network: [ACALA] # add NODLE
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
@@ -20,14 +20,19 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
+      - name: Create & View env-${{ matrix.network }} file
+        if: ${{ matrix.network == ACALA }}
+        run: |
+          cat << EOF > .env-${{ matrix.network }}
+          REACT_APP_OMNI_SERVER_ENDPOINT=$ACALA_REACT_APP_OMNI_SERVER_ENDPOINT
+          REACT_APP_OMNI_WS_ENDPOINT=$ACALA_REACT_APP_OMNI_WS_ENDPOINT
+          REACT_APP_OMNI_SS58_FORMAT=$ACALA_REACT_APP_OMNI_SS58_FORMAT
+          REACT_APP_GRAPHQL_ENDPOINT=$ACALA_REACT_APP_GRAPHQL_ENDPOINT
+          REACT_APP_PRIMARY_COLOR=$ACALA_REACT_APP_PRIMARY_COLOR
+          EOF
       - name: Build the Docker image ${{ matrix.network }}
         run: |
-          docker build -t dev-omni-front:${{ matrix.network }}-${{steps.vars.outputs.tag}} . \
-            --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT \
-            --build-arg REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT \
-            --build-arg REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT \
-            --build-arg REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT \
-            --build-arg REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
+          docker build -t dev-omni-front:${{steps.vars.outputs.tag}} .
         env:
           ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
           ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
@@ -83,4 +88,4 @@ jobs:
         with:
           plugins: |
             https://github.com/jkroepke/helm-secrets
-          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{ matrix.network }}-${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
+          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
