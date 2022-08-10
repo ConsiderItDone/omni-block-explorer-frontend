@@ -22,7 +22,7 @@ jobs:
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
       - name: Build the Docker image ${{ matrix.network }}
         run: |
-          docker build -t dev-omni-front:${{steps.vars.outputs.tag}} . \
+          docker build -t dev-omni-front:${{ matrix.network }}-${{steps.vars.outputs.tag}} . \
             --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT \
             --build-arg REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT \
             --build-arg REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT \
@@ -76,11 +76,11 @@ jobs:
             }
           }
           EOF
-      - name: Helm deploy
+      - name: Helm deploy ${{ matrix.network }}
         uses: koslib/helm-eks-action@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_DEV }}
         with:
           plugins: |
             https://github.com/jkroepke/helm-secrets
-          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
+          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{ matrix.network }}-${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
