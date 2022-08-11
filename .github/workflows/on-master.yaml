@@ -41,7 +41,6 @@ jobs:
           REACT_APP_GRAPHQL_ENDPOINT=${{ env.ACALA_REACT_APP_GRAPHQL_ENDPOINT }}
           REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}
           EOF
-      - name: Create & View env-${{ matrix.network }} file
         if: ${{ matrix.network }} == 'NODLE'
         run: |
           cat << EOF > .env-${{ matrix.network }}
