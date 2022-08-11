@@ -56,11 +56,11 @@ jobs:
       - name: Build the Docker image ${{ matrix.network }}
         run: |
           docker build -t dev-omni-front:${{steps.vars.outputs.tag}} \
-            --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$REACT_APP_OMNI_SERVER_ENDPOINT \
-            --build-arg REACT_APP_OMNI_WS_ENDPOINT=$REACT_APP_OMNI_WS_ENDPOINT \
-            --build-arg REACT_APP_OMNI_SS58_FORMAT=$REACT_APP_OMNI_SS58_FORMAT \
-            --build-arg REACT_APP_GRAPHQL_ENDPOINT=$REACT_APP_GRAPHQL_ENDPOINT \
-            --build-arg REACT_APP_PRIMARY_COLOR=$REACT_APP_PRIMARY_COLOR \
+            --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.REACT_APP_OMNI_SERVER_ENDPOINT }} \
+            --build-arg REACT_APP_OMNI_WS_ENDPOINT=${{ env.REACT_APP_OMNI_WS_ENDPOINT }} \
+            --build-arg REACT_APP_OMNI_SS58_FORMAT=${{ env.REACT_APP_OMNI_SS58_FORMAT }} \
+            --build-arg REACT_APP_GRAPHQL_ENDPOINT=${{ env.REACT_APP_GRAPHQL_ENDPOINT }} \
+            --build-arg REACT_APP_PRIMARY_COLOR=${{ env.REACT_APP_PRIMARY_COLOR }} \
             .
       - name: Push to ECR
         id: ecr
@@ -94,7 +94,12 @@ jobs:
       - name: Create & View env file
         id: create-env
         run: |
-          NETWORK=${{ matrix.network }} && cat << EOF > .env-${{ matrix.network }}.yaml
+          NETWORK=${{ matrix.network }}
+          echo "CHART=${NETWORK,,}" >> $GITHUB_ENV
+
+          cat $GITHUB_ENV
+          cat << EOF > .env-${{ matrix.network }}.yaml
+
           {
             "ingress": {
               "host": "${NETWORK,,}.${{ env.HOST }}",
@@ -112,6 +117,6 @@ jobs:
           command: |
             aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && \
               kubectl get pods && helm ls && \
-              NETWORK=${{ matrix.network }} && helm upgrade ${NETWORK,,} -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 \
+              helm upgrade ${{ env.CHART }} -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 \
               --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && \
               helm ls && kubectl get pods
