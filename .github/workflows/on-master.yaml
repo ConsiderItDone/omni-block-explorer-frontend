@@ -42,7 +42,7 @@ jobs:
           
           cat $GITHUB_ENV
       - name: Create & View env file NODLE
-        if: ${{ matrix.network == 'ACALA' }}
+        if: ${{ matrix.network == 'NODLE' }}
         run: |
           echo "REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_SERVER_ENDPOINT }}" >> $GITHUB_ENV
           echo "REACT_APP_OMNI_WS_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_WS_ENDPOINT }}" >> $GITHUB_ENV
