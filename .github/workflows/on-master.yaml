@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Get the version
         id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
+        run: NETWORK=${{ matrix.network }} && echo ::set-output name=tag::${NETWORK,,}-$(echo ${GITHUB_SHA:0:7})
       - name: Create & View env file ACALA
         if: ${{ matrix.network == 'ACALA' }}
         run: |
@@ -55,8 +55,7 @@ jobs:
           cat $GITHUB_ENV
       - name: Build the Docker image ${{ matrix.network }}
         run: |
-          NETWORK=${{ matrix.network }}
-          docker build -t dev-omni-front:${NETWORK,,}-${{steps.vars.outputs.tag}} \
+          docker build -t dev-omni-front:${{steps.vars.outputs.tag}} \
             --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$REACT_APP_OMNI_SERVER_ENDPOINT \
             --build-arg REACT_APP_OMNI_WS_ENDPOINT=$REACT_APP_OMNI_WS_ENDPOINT \
             --build-arg REACT_APP_OMNI_SS58_FORMAT=$REACT_APP_OMNI_SS58_FORMAT \
@@ -70,7 +69,7 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-1
-          image: dev-omni-front:${NETWORK,,}-${{steps.vars.outputs.tag}}
+          image: dev-omni-front:$${{steps.vars.outputs.tag}}
 
   deploy:
     strategy:
@@ -95,8 +94,7 @@ jobs:
       - name: Create & View env file
         id: create-env
         run: |
-          NETWORK=${{ matrix.network }}
-          cat << EOF > .env-${{ matrix.network }}.yaml
+          NETWORK=${{ matrix.network }} && cat << EOF > .env-${{ matrix.network }}.yaml
           {
             "ingress": {
               "host": "${NETWORK,,}.${{ env.HOST }}",
@@ -111,4 +109,4 @@ jobs:
         with:
           plugins: |
             https://github.com/jkroepke/helm-secrets
-          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${NETWORK,,}-${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
+          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=$${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
