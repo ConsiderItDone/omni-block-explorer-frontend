@@ -31,18 +31,20 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
-      - if: ${{ matrix.network }} == 'ACALA'
+      - name: Create & View env file ACALA
+        if: ${{ matrix.network }} == 'ACALA'
         run: |
-          cat << EOF > .env-${{ matrix.network }}
+          cat << EOF > .env-${{ matrix.network == 'ACALA' }}
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.ACALA_REACT_APP_OMNI_SERVER_ENDPOINT }}
           REACT_APP_OMNI_WS_ENDPOINT=${{ env.ACALA_REACT_APP_OMNI_WS_ENDPOINT }}
           REACT_APP_OMNI_SS58_FORMAT=${{ env.ACALA_REACT_APP_OMNI_SS58_FORMAT }}
           REACT_APP_GRAPHQL_ENDPOINT=${{ env.ACALA_REACT_APP_GRAPHQL_ENDPOINT }}
           REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}
           EOF
-      - if: ${{ matrix.network }} == 'NODLE'
+      - name: Create & View env file NODLE
+        if: ${{ matrix.network }} == 'NODLE'
         run: |
-          cat << EOF > .env-${{ matrix.network }}
+          cat << EOF > .env-${{ matrix.network == 'NODLE' }}
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_SERVER_ENDPOINT }}
           REACT_APP_OMNI_WS_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_WS_ENDPOINT }}
           REACT_APP_OMNI_SS58_FORMAT=${{ env.NODLE_REACT_APP_OMNI_SS58_FORMAT }}
