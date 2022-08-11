@@ -70,7 +70,7 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-1
-          image: dev-omni-front:${{steps.vars.outputs.tag}}
+          image: dev-omni-front:${NETWORK,,}-${{steps.vars.outputs.tag}}
 
   deploy:
     strategy:
