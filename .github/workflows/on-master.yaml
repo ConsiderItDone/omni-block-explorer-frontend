@@ -32,9 +32,9 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
       - name: Create & View env file ACALA
-        if: ${{ matrix.network }} == 'ACALA'
+        if: ${{ matrix.network == 'ACALA' }}
         run: |
-          cat << EOF > .env-${{ matrix.network == 'ACALA' }}
+          cat << EOF > .env-ACALA
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.ACALA_REACT_APP_OMNI_SERVER_ENDPOINT }}
           REACT_APP_OMNI_WS_ENDPOINT=${{ env.ACALA_REACT_APP_OMNI_WS_ENDPOINT }}
           REACT_APP_OMNI_SS58_FORMAT=${{ env.ACALA_REACT_APP_OMNI_SS58_FORMAT }}
@@ -42,9 +42,9 @@ jobs:
           REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}
           EOF
       - name: Create & View env file NODLE
-        if: ${{ matrix.network }} == 'NODLE'
+        if: false
         run: |
-          cat << EOF > .env-${{ matrix.network == 'NODLE' }}
+          cat << EOF > .env-NODLE
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_SERVER_ENDPOINT }}
           REACT_APP_OMNI_WS_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_WS_ENDPOINT }}
           REACT_APP_OMNI_SS58_FORMAT=${{ env.NODLE_REACT_APP_OMNI_SS58_FORMAT }}
@@ -53,7 +53,12 @@ jobs:
           EOF
       - name: Build the Docker image ${{ matrix.network }}
         run: |
-          docker build -t dev-omni-front:${{steps.vars.outputs.tag}} .
+          echo docker build -t dev-omni-front:${{steps.vars.outputs.tag}} . \
+            --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_SERVER_ENDPOINT \
+            --build-arg REACT_APP_OMNI_WS_ENDPOINT=$${{ matrix.network }}_REACT_APP_OMNI_WS_ENDPOINT \
+            --build-arg REACT_APP_OMNI_SS58_FORMAT=$${{ matrix.network }}_REACT_APP_OMNI_SS58_FORMAT \
+            --build-arg REACT_APP_GRAPHQL_ENDPOINT=$${{ matrix.network }}_REACT_APP_GRAPHQL_ENDPOINT \
+            --build-arg REACT_APP_PRIMARY_COLOR=$${{ matrix.network }}_REACT_APP_PRIMARY_COLOR
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
