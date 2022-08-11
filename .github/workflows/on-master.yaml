@@ -109,4 +109,9 @@ jobs:
         with:
           plugins: |
             https://github.com/jkroepke/helm-secrets
-          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && kubectl get pods && helm ls && helm upgrade helm-omni-front -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && helm ls && kubectl get pods
+          command: aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && \
+                    kubectl get pods && helm ls && \
+                    NETWORK=${{ matrix.network }} && \
+                    helm upgrade ${NETWORK,,}-helm-omni-front -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.0 \
+                    --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{needs.build.outputs.docker_tag}} && \
+                    helm ls && kubectl get pods
