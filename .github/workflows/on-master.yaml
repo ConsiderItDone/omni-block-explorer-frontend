@@ -55,6 +55,7 @@ jobs:
         run: |
           echo docker build -t dev-omni-front:${{steps.vars.outputs.tag}} \
             --build-arg REACT_APP_OMNI_SERVER_ENDPOINT=$REACT_APP_OMNI_SERVER_ENDPOINT \
+            --build-arg REACT_APP_OMNI_SS58_FORMAT=$REACT_APP_OMNI_SS58_FORMAT \
             .
       - name: Push to ECR
         id: ecr
