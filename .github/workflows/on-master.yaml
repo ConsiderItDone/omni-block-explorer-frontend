@@ -32,7 +32,7 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:0:7})
       - name: Create & View env file
-        if: ${{ matrix.network }} == 'ACALA'
+      - if: ${{ matrix.network }} == 'ACALA'
         run: |
           cat << EOF > .env-${{ matrix.network }}
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.ACALA_REACT_APP_OMNI_SERVER_ENDPOINT }}
@@ -41,7 +41,7 @@ jobs:
           REACT_APP_GRAPHQL_ENDPOINT=${{ env.ACALA_REACT_APP_GRAPHQL_ENDPOINT }}
           REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}
           EOF
-        if: ${{ matrix.network }} == 'NODLE'
+      - if: ${{ matrix.network }} == 'NODLE'
         run: |
           cat << EOF > .env-${{ matrix.network }}
           REACT_APP_OMNI_SERVER_ENDPOINT=${{ env.NODLE_REACT_APP_OMNI_SERVER_ENDPOINT }}
