@@ -120,10 +120,10 @@ const LogsTable: FC = () => {
     <div className="blocks" sx={styles}>
       <div className="filterHeader">
         <div>Filter by:</div>
-        <Button type="text" data-filter={filter.error} onClick={()=>changeFilterHandler('error')}>error</Button>
-        <Button type="text" data-filter={filter.warn} onClick={()=>changeFilterHandler('warn')}>warn</Button>
-        <Button type="text" data-filter={filter.info} onClick={()=>changeFilterHandler('info')}>info</Button>
-        <Button type="text" data-filter={filter.debug} onClick={()=>changeFilterHandler('debug')}>debug</Button>
+        <Button type="text" data-filter={filter.error} data-filter-level={"error"} onClick={()=>changeFilterHandler('error')}>error</Button>
+        <Button type="text" data-filter={filter.warn} data-filter-level={"warn"} onClick={()=>changeFilterHandler('warn')}>warn</Button>
+        <Button type="text" data-filter={filter.info} data-filter-level={"info"} onClick={()=>changeFilterHandler('info')}>info</Button>
+        <Button type="text" data-filter={filter.debug} data-filter-level={"debug"} onClick={()=>changeFilterHandler('debug')}>debug</Button>
         <Search
           placeholder="Search by Log"
           style={{ width: 200 }}

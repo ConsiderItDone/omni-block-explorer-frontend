@@ -180,6 +180,18 @@ export const useStyles = () => {
           color: 'black',
           opacity: '0.5',
         },
+        '[data-filter="true"][data-filter-level="error"]': {
+          color: '#E40C5B',
+        },
+        '[data-filter="true"][data-filter-level="warn"]': {
+          color: '#FFE45A',
+        },
+        '[data-filter="true"][data-filter-level="info"]': {
+          color: '#5A81FF',
+        },
+        '[data-filter="true"][data-filter-level="debug"]': {
+          color: '#844DFF',
+        },
         '.ant-input-wrapper': {
           border: '1px solid #27333f',
           borderRadius: '8px',
@@ -202,8 +214,13 @@ export const useStyles = () => {
           border: 'none',
           backgroundColor: 'transparent',
         },
-        '.ant-input-group-addon .ant-btn:hover': {
+        '.ant-btn': {
           backgroundColor: 'transparent',
+          border: '1px solid',
+          borderColor: 'transparent',
+          '&:hover': {
+            borderColor: 'inherit',
+          }
         },
         '.ant-input-search-button': {
           height: '100%',
@@ -215,6 +232,8 @@ export const useStyles = () => {
         'button': {
           border: 'none',
           marginX: '5px',
+          fontWeight: '500',
+          lineHeight: '24px',
         }
       }
     }
