@@ -9,7 +9,7 @@ import queryString from 'query-string';
 
 const Search = Input.Search;
 const LOGS_PAGE_SIZE = 10;
-const query = `query Logs($filterLevel: String!, $searchString:String, $offset: Int, $first: Int){
+const query = `query Logs($filterLevel: String, $searchString:String, $offset: Int, $first: Int){
   fetchLogs(filterLevel: $filterLevel, searchString:$searchString, offset: $offset, first: $first) {
     logs{
       logId
@@ -31,8 +31,6 @@ const LogsTable: FC = () => {
     debug: true,
   });
   const [data, setData] = useState({ totalCount: 0, logs: [] });
-  const searchString = useRef('');
-  const logLevel = useRef('');
 
   const changeFilterHandler = (filterName) => {
     let filterLevel = {
@@ -78,7 +76,8 @@ const LogsTable: FC = () => {
         break;
     }
     setFilter(filterLevel);
-    logLevel.current = filterName;
+    queryObj.logLevel = filterName;
+    navigate(`${pathname}?${queryString.stringify(queryObj)}`);
   };
 
   const fetchLogs = useCallback(async (offset, filterLevel, searchString, first) => {
@@ -103,8 +102,8 @@ const LogsTable: FC = () => {
   }, []);
 
   useEffect(() => {
-    fetchLogs(skip, logLevel.current, searchString.current, LOGS_PAGE_SIZE);
-  }, [skip, logLevel.current, searchString.current]);
+    fetchLogs(skip, queryObj.logLevel, queryObj.search, LOGS_PAGE_SIZE);
+  }, [skip, queryObj.logLevel, queryObj.search]);
 
   const filtredLogs = data ? data?.logs?.map(transformLogData) : null;
 
@@ -148,8 +147,8 @@ const LogsTable: FC = () => {
           placeholder="Search by Log"
           style={{ width: 200 }}
           onSearch={(value) => {
-            searchString.current = value;
             queryObj.page = 1;
+            queryObj.search = value;
             navigate(`${pathname}?${queryString.stringify(queryObj)}`);
           }}
         />
