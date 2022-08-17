@@ -9,7 +9,7 @@ const defaultQuery = `query {
 }`;
 
 const fetcher = async (graphQLParams) => {
-  const data = await fetch(process.env.REACT_APP_GRAPHQL_ENDPOINT, {
+  const data = await fetch(`${process.env.REACT_APP_GRAPHQL_ENDPOINT}/playground`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

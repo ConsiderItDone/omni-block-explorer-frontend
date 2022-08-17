@@ -2,9 +2,10 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Tabs } from 'antd';
 import { Copy } from 'components';
-import styles from './styles';
+import { useStyles } from './styles';
 import { useRouter } from 'utils/hooks';
 import Playground from './Playground';
+import LogsTable from './LogsTable';
 
 const { TabPane } = Tabs;
 
@@ -26,6 +27,7 @@ const TABS = {
 };
 
 const OmniGraph: FC = () => {
+  const styles = useStyles();
   const { pathname, navigate, queryObj } = useRouter();
   const [activeTab, setActiveTab] = useState<string>(queryObj?.tab || TABS.PLAYGROUND);
 
@@ -112,7 +114,7 @@ const OmniGraph: FC = () => {
               <Playground />
             </TabPane>
             <TabPane tab="Logs" key={TABS.LOGS}>
-              Logs
+              <LogsTable />
             </TabPane>
           </Tabs>
         </div>
