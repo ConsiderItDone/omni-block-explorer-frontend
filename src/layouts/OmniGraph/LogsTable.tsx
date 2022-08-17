@@ -151,7 +151,6 @@ const LogsTable: FC = () => {
             searchString.current = value;
             queryObj.page = 1;
             navigate(`${pathname}?${queryString.stringify(queryObj)}`);
-            // fetchLogs(0, logLevel.current, value, LOGS_PAGE_SIZE);
           }}
         />
       </div>
