@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import React, { FC, useEffect, useState, useRef, useCallback } from 'react';
+import React, { FC, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'utils/hooks';
 import { Table } from 'components';
 import { Input, Button } from 'antd';
