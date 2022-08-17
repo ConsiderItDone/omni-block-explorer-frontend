@@ -5,6 +5,7 @@ import { Table } from 'components';
 import { Input, Button } from 'antd';
 import { columns, transformLogData } from './utils';
 import { useStyles } from './styles';
+import queryString from 'query-string';
 
 const Search = Input.Search;
 const LOGS_PAGE_SIZE = 10;
@@ -22,7 +23,7 @@ const query = `query Logs($filterLevel: String!, $searchString:String, $offset: 
 
 const LogsTable: FC = () => {
   const styles = useStyles();
-  const { skip } = useRouter();
+  const { skip, pathname, navigate, queryObj } = useRouter();
   const [filter, setFilter] = useState({
     error: true,
     warn: true,
@@ -103,7 +104,7 @@ const LogsTable: FC = () => {
 
   useEffect(() => {
     fetchLogs(skip, logLevel.current, searchString.current, LOGS_PAGE_SIZE);
-  }, [skip, logLevel.current]);
+  }, [skip, logLevel.current, searchString.current]);
 
   const filtredLogs = data ? data?.logs?.map(transformLogData) : null;
 
@@ -148,7 +149,9 @@ const LogsTable: FC = () => {
           style={{ width: 200 }}
           onSearch={(value) => {
             searchString.current = value;
-            fetchLogs(0, logLevel.current, value, LOGS_PAGE_SIZE);
+            queryObj.page = 1;
+            navigate(`${pathname}?${queryString.stringify(queryObj)}`);
+            // fetchLogs(0, logLevel.current, value, LOGS_PAGE_SIZE);
           }}
         />
       </div>
