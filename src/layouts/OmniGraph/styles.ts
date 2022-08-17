@@ -153,20 +153,20 @@ export const useStyles = () => {
         color: 'white',
         textAlign: 'center',
       },
-      'div[data-status-level="error"]':{
+      'div[data-status-level="error"]': {
         backgroundColor: '#E40C5B',
       },
-      'div[data-status-level="warn"]':{
+      'div[data-status-level="warn"]': {
         backgroundColor: '#FFE45A',
       },
-      'div[data-status-level="info"]':{
+      'div[data-status-level="info"]': {
         backgroundColor: '#5A81FF',
       },
-      'div[data-status-level="debug"]':{
+      'div[data-status-level="debug"]': {
         backgroundColor: '#844DFF',
       },
-      '.blocks':{
-        position: 'relative'
+      '.blocks': {
+        position: 'relative',
       },
       '.filterHeader': {
         position: 'absolute',
@@ -177,7 +177,7 @@ export const useStyles = () => {
         justifyContent: 'end',
         alignItems: 'center',
         '[data-filter="false"]': {
-          color: 'black',
+          color: themeUI.colors.text,
           opacity: '0.5',
         },
         '[data-filter="true"][data-filter-level="error"]': {
@@ -193,7 +193,8 @@ export const useStyles = () => {
           color: '#844DFF',
         },
         '.ant-input-wrapper': {
-          border: '1px solid #27333f',
+          border: '1px solid',
+          borderColor: 'primary',
           borderRadius: '8px',
         },
         '.ant-input-group-addon': {
@@ -220,7 +221,7 @@ export const useStyles = () => {
           borderColor: 'transparent',
           '&:hover': {
             borderColor: 'inherit',
-          }
+          },
         },
         '.ant-input-search-button': {
           height: '100%',
@@ -228,16 +229,16 @@ export const useStyles = () => {
           borderRadius: '8px',
           backgroundColor: 'transparent',
         },
-        '.ant-input-search-button *': { color: themeUI.colors.text },
-        'button': {
+        '.ant-input-search-button *': { color: 'primary' },
+        button: {
           border: 'none',
           marginX: '5px',
           fontWeight: '500',
           lineHeight: '24px',
-        }
-      }
-    }
-  }, [themeUI])
+        },
+      },
+    };
+  }, [themeUI]);
 
   return styles;
 };

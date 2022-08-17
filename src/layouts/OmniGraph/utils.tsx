@@ -1,26 +1,20 @@
 import React, { FC } from 'react';
-import { Validators_validators_items } from 'queries/__generated__/Validators';
-import { Link } from 'react-router-dom';
-import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { generateColumns } from 'utils/generators';
 
-const StatusElement: FC<{statusLevel: string}> = ({statusLevel = 1}) => {
+const StatusElement: FC<{ statusLevel: string }> = ({ statusLevel = 1 }) => {
   return (
-    <div
-      data-status-level={statusLevel}
-      className="logStatusLevel"
-    >
+    <div data-status-level={statusLevel} className="logStatusLevel">
       {statusLevel}
     </div>
   );
-}
+};
 
 export interface FilterLogs {
   error: boolean;
   warn: boolean;
   info: boolean;
   debug: boolean;
-  searchString: string,
+  searchString: string;
 }
 export interface LogsRenderProps {
   key?: string; // antd table row key
@@ -37,9 +31,9 @@ const logTableItemObjHome = {
   date: null,
 };
 export const columns = generateColumns(logTableItemObj, {
-  timestamp: {title:'date', width: 200, responsive: ['md'], render: (value) => <p className="logDate">{value}</p> },
-  level: {title:'level', width: 100, responsive: ['md'], render: (value) => <StatusElement statusLevel={value}/> },
-  description: {title:'description', responsive: ['md'], },
+  timestamp: { title: 'date', width: 200, responsive: ['md'], render: (value) => <p className="logDate">{value}</p> },
+  level: { title: 'level', width: 100, responsive: ['md'], render: (value) => <StatusElement statusLevel={value} /> },
+  description: { title: 'description', responsive: ['md'] },
 });
 
 export const columnsMini = generateColumns(logTableItemObjHome, {
@@ -47,15 +41,11 @@ export const columnsMini = generateColumns(logTableItemObjHome, {
 });
 
 export const transformLogData = (validator: any): LogsRenderProps => {
-  const { logId, timestamp, level, currentStatus, description } = validator;
+  const { logId, timestamp, level, description } = validator;
   return {
     key: logId,
     timestamp: new Date(timestamp).toLocaleString(),
     level,
     description,
   };
-};
-export const filterformLogData = (filter: FilterLogs) => (validator: any): LogsRenderProps => {
-  const { level, description } = validator;
-  return filter[level] && (filter.searchString.length ===0 || description.includes(filter.searchString));
 };
