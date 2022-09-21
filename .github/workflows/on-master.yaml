@@ -16,13 +16,15 @@ jobs:
       ACALA_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
       ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
       ACALA_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
-      ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
+      ACALA_REACT_APP_PRIMARY_COLOR: "#F40079"
+      ACALA_REACT_APP_LOGO_SR: "https://polkadot.js.org/apps/static/acala.696aa448..svg"
       # NODLE
       NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_OMNI_SS58_FORMAT: 38
       NODLE_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
-      NODLE_REACT_APP_PRIMARY_COLOR: "steelgreen"
+      NODLE_REACT_APP_PRIMARY_COLOR: "#19AE82"
+      NODLE_REACT_APP_LOGO_SR: "https://polkadot.js.org/apps/static/nodle.3df6bc14..svg"
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
@@ -40,6 +42,7 @@ jobs:
           echo "REACT_APP_OMNI_SS58_FORMAT=${{ env.ACALA_REACT_APP_OMNI_SS58_FORMAT }}" >> $GITHUB_ENV
           echo "REACT_APP_GRAPHQL_ENDPOINT=${{ env.ACALA_REACT_APP_GRAPHQL_ENDPOINT }}" >> $GITHUB_ENV
           echo "REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}" >> $GITHUB_ENV
+          echo "REACT_APP_LOGO_SR=${{ env.ACALA_REACT_APP_LOGO_SR }}" >> $GITHUB_ENV
 
           cat $GITHUB_ENV
       - name: Create & View env file NODLE
@@ -50,6 +53,7 @@ jobs:
           echo "REACT_APP_OMNI_SS58_FORMAT=${{ env.NODLE_REACT_APP_OMNI_SS58_FORMAT }}" >> $GITHUB_ENV
           echo "REACT_APP_GRAPHQL_ENDPOINT=${{ env.NODLE_REACT_APP_GRAPHQL_ENDPOINT }}" >> $GITHUB_ENV
           echo "REACT_APP_PRIMARY_COLOR=${{ env.NODLE_REACT_APP_PRIMARY_COLOR }}" >> $GITHUB_ENV
+          echo "REACT_APP_LOGO_SR=${{ env.NODLE_REACT_APP_LOGO_SR }}" >> $GITHUB_ENV
 
           cat $GITHUB_ENV
       - name: Build the Docker image ${{ matrix.network }}
@@ -60,6 +64,7 @@ jobs:
             --build-arg REACT_APP_OMNI_SS58_FORMAT=${{ env.REACT_APP_OMNI_SS58_FORMAT }} \
             --build-arg REACT_APP_GRAPHQL_ENDPOINT=${{ env.REACT_APP_GRAPHQL_ENDPOINT }} \
             --build-arg REACT_APP_PRIMARY_COLOR=${{ env.REACT_APP_PRIMARY_COLOR }} \
+            --build-arg REACT_APP_LOGO_SR=${{ env.REACT_APP_LOGO_SR }} \
             .
       - name: Push to ECR
         id: ecr
