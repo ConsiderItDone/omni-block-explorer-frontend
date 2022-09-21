@@ -65,7 +65,7 @@ export default React.memo(() => {
         </h3>
         {navigation}
       </div>
-      <img className="bottom_logo" src={logoConsider} />
+      {/*<img className="bottom_logo" src={logoConsider} />*/}
     </nav>
   );
 });
