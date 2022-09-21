@@ -30,7 +30,7 @@ const AccountDetails: FC = () => {
 
   const extrinsics = useMemo(() => data?.accountByAddress?.extrinsics?.map(transformExtrinsicData), [data]);
   const transfers = useMemo(
-    () => data?.transfersFrom?.items.concat(data?.transfersTo?.items).map(transformTransferData),
+    () => data?.transfersFrom?.items.concat(data?.transfersTo?.items).map(transformTransferData).filter(Boolean),
     [data],
   );
 

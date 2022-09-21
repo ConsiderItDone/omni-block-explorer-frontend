@@ -27,7 +27,7 @@ const LayoutTransfers: FC = () => {
   useErrorDisaply(error);
   const { theme: themeUI } = useThemeUI();
 
-  const transfers = data ? data.events.items?.map(transformTransferData) : null;
+  const transfers = data ? data.events.items?.map(transformTransferData).filter(Boolean) : null;
 
   const x = useRef(null);
 
