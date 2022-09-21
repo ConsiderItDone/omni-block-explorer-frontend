@@ -68,7 +68,7 @@ export const LayoutHome: FC = () => {
   const styles = useStyles();
 
   const blockss = blocks?.map(transformBlockItem);
-  const transferss = transfers?.map(transformTransferData);
+  const transferss = transfers?.map(transformTransferData).filter(Boolean);
   const validatorss = validators?.map(transformValidatorData);
   const allocationss = allocRaw?.map(transformAllocationData);
   const allocations = useMemo(

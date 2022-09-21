@@ -10,6 +10,7 @@ import { transferDataTransformer } from 'utils/adapters';
 import { renderTime } from 'utils/elements';
 
 export const transformTransferData = (event: Transfers_events_items): TransferRenderProps => {
+  if (!event.extrinsic) return;
   const {
     data,
     extrinsic: {
