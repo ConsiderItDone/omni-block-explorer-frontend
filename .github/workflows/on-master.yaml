@@ -12,16 +12,16 @@ jobs:
         network: [ACALA, NODLE]
     env:
       # ACALA
-      ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-      ACALA_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+      ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
+      ACALA_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
       ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
-      ACALA_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:4000"
+      ACALA_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
       ACALA_REACT_APP_PRIMARY_COLOR: "steelblue"
       # NODLE
-      NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "http://api.prod.nodleprotocol.io/graphql"
-      NODLE_REACT_APP_OMNI_WS_ENDPOINT: "ws://api.prod.nodleprotocol.io/graphql"
+      NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
+      NODLE_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_OMNI_SS58_FORMAT: 38
-      NODLE_REACT_APP_GRAPHQL_ENDPOINT: "http://localhost:5000"
+      NODLE_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_PRIMARY_COLOR: "steelgreen"
     name: Run docker build
     runs-on: ubuntu-latest
