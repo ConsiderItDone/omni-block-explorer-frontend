@@ -12,6 +12,7 @@ import { ChartTransfers } from 'queries/__generated__/ChartTransfers';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { useRouter, useChart, useErrorDisaply } from 'utils/hooks';
 import { stringifyValues } from 'utils/funcs';
+import { useThemeUI } from 'theme-ui';
 
 const { Item } = Form;
 
@@ -24,12 +25,13 @@ const LayoutTransfers: FC = () => {
     variables: { ...generateQueryVars(filterParams), skip },
   });
   useErrorDisaply(error);
+  const { theme: themeUI } = useThemeUI();
 
   const transfers = data ? data.events.items?.map(transformTransferData) : null;
 
   const x = useRef(null);
 
-  useChart('transfers', x, chartData);
+  useChart('transfers', x, chartData, themeUI);
 
   useEffect(() => {
     setFilterParams({ from: queryObj?.from, to: queryObj?.to });

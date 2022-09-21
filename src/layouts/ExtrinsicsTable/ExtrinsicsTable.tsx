@@ -11,6 +11,7 @@ import { useErrorDisaply, useRouter } from 'utils/hooks';
 import { stringifyValues } from 'utils/funcs';
 import moment from 'moment';
 import { useChart } from 'charts/useChart';
+import { useThemeUI } from 'theme-ui';
 
 const constructFilterParamas = (queryObj) => {
   return {
@@ -24,6 +25,7 @@ const constructFilterParamas = (queryObj) => {
 };
 const ExtrinsicsTable: FC = () => {
   const { search, navigate, queryObj, skip } = useRouter();
+  const { theme: themeUI } = useThemeUI();
 
   const [filterParams, setFilterParams] = useState(constructFilterParamas(queryObj));
 
@@ -62,7 +64,7 @@ const ExtrinsicsTable: FC = () => {
 
   const x: any = useRef(null);
 
-  useChart('extrinsics', x, chartData);
+  useChart('extrinsics', x, chartData, themeUI);
   return (
     <div>
       <div

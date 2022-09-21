@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.18",
-    "@apollo/client": "^3.3.16",
+    "@apollo/client": "^3.6.9",
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.9.3",
     "@mdx-js/react": "^2.1.2",
@@ -17,7 +17,9 @@
     "craco-antd": "^2.0.0",
     "craco-stylus": "^1.2.0",
     "eslint-config-prettier": "^8.5.0",
+    "graphiql": "^1.11.0",
     "graphql": "^16.5.0",
+    "graphql-ws": "^5.9.1",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
@@ -34,6 +36,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "prettier": "prettier --write ./src",
+    "lint": "eslint ./src/**/*.{js,ts,tsx} --max-warnings=0 --fix",
     "eject": "react-scripts eject"
   },
   "browserslist": {

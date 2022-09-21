@@ -35,7 +35,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
   },
   'g[aria-labelledby]': { display: 'none' },
   '.tabs .ant-tabs-nav:before': { borderBottom: '2px solid !important', borderColor: theme.colors.primary },
-  '.tabs .ant-tabs-nav-operations .ant-tabs-nav-more': { color: '#fff' },
+  '.tabs .ant-tabs-nav-operations .ant-tabs-nav-more': { color: theme.colors.text },
   '.tabs .ant-tabs-nav-operations .ant-tabs-nav-more:after': {
     display: 'none',
   },
@@ -60,7 +60,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
   },
   '.fullWidth': { width: '100%' },
   '.ant-form-item': { height: '100%' },
-  '.ant-form-item-label label': { height: '100%', color: '#fff' },
+  '.ant-form-item-label label': { height: '100%', color: theme.colors.text },
   '.ant-form-item-control-input,\n.ant-form-item-control-input-content': {
     height: '100%',
   },
@@ -68,7 +68,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
     backgroundColor: 'transparent',
     border: '1px solid #27333f',
     borderRadius: '6px',
-    color: '#fff',
+    color: theme.colors.text,
     height: '100%',
   },
   '.ant-input:hover,\n.ant-input-affix-wrapper:hover': {
@@ -122,11 +122,11 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
     border: 'none',
   },
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-date-panel .ant-picker-header *': {
-    color: '#fff',
+    color: theme.colors.text,
   },
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-date-panel .ant-picker-body table td':
     {
-      color: '#fff',
+      color: theme.colors.text,
     },
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-date-panel .ant-picker-body table th':
     {
@@ -146,7 +146,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
     },
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-date-panel .ant-picker-body table .ant-picker-cell-today > .ant-picker-cell-inner':
     {
-      color: '#fff',
+      color: theme.colors.text,
       backgroundColor: '#27333f',
     },
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-date-panel .ant-picker-body table .ant-picker-cell-inner:before':
@@ -167,10 +167,10 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
   '.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel .ant-picker-footer a': {
     color: theme.colors.primary,
   },
-  '.ant-btn.dark': { backgroundColor: theme.colors.primary, color: '#fff' },
+  '.ant-btn.dark': { backgroundColor: theme.colors.primary, color: theme.colors.text },
   '.custom_table': {
     backgroundColor: theme.colors['window-dark'],
-    color: '#fff',
+    color: theme.colors.text,
     borderRadius: '24px',
     padding: '23px 30px 12px',
   },
@@ -201,10 +201,15 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
     marginLeft: '0',
   },
   '.tabs .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab .ant-tabs-tab-btn': {
-    color: '#fff',
+    color: theme.colors.text,
     fontWeight: 500,
     fontSize: '16px',
     lineHeight: '20px',
+  },
+  '.tabs .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab.ant-tabs-tab-active': {
+    '.ant-tabs-tab-btn': {
+      color: theme.colors.primary,
+    },
   },
   '.tabs .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab .ant-tabs-tab-btn span': {
     color: theme.colors.gray,
@@ -250,7 +255,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
       '.ant-popover-inner': {
         background: '#2a3541',
         '.ant-popover-inner-content': {
-          color: '#fff',
+          color: theme.colors.text,
         },
       },
       '.ant-popover-arrow': {

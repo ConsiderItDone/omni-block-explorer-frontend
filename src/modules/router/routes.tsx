@@ -17,6 +17,8 @@ const Certificates = lazy(() => import('../../layouts/CertificatesTable/Certific
 const ValidatorsTable = lazy(() => import('../../layouts/ValidatorsTable/ValidatorsTable'));
 const AllocationsTable = lazy(() => import('../../layouts/AllocationsTable/AllocationsTable'));
 const TransferDetails = lazy(() => import('../../layouts/TransferDetails/TransferDetails'));
+const OmniGraph = lazy(() => import('../../layouts/OmniGraph/OmniGraph'));
+const ColorScheme = lazy(() => import('../../layouts/ColorScheme/ColorScheme'));
 
 const routedComponents = [
   {
@@ -74,6 +76,14 @@ const routedComponents = [
   {
     component: TransferDetails,
     path: `${ROUTES.transfers}/:id`,
+  },
+  {
+    component: OmniGraph,
+    path: `${ROUTES.omnigraph}`,
+  },
+  {
+    component: ColorScheme,
+    path: `${ROUTES.color_schemes}`,
   },
 ];
 

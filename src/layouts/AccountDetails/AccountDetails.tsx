@@ -15,7 +15,7 @@ import { transformApplicationData, columns as applicationColumns } from 'layouts
 import { transformAllocationData, columns as allocationColumns } from 'layouts/AllocationsTable/util';
 import { normalizeCurrency } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
-import styles from './styles';
+import { useStyles } from './styles';
 
 const { TabPane } = Tabs;
 
@@ -24,6 +24,7 @@ const AccountDetails: FC = () => {
   const { data, loading, error } = useQuery<AccountByAddress>(ACCOUNTBYADDRESS, {
     variables: { address: accountAddress },
   });
+  const styles = useStyles();
 
   useErrorDisaply(error);
 

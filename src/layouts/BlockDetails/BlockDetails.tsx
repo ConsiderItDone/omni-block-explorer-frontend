@@ -13,7 +13,7 @@ import { blockExtrinsics as extrinsicsColumns, transformExtrinsicData } from '..
 import { logsColumns, eventColumns, transformEventData, transformLogData } from './utils';
 import { useErrorDisaply, useRouter } from 'utils/hooks';
 import moment from 'moment';
-import styles from './styles'
+import { useStyles } from './styles';
 
 const { TabPane } = Tabs;
 interface Params {
@@ -24,6 +24,7 @@ const Layout_Block: FC<Params> = () => {
   const { id } = useParams();
   const { data, loading, error } = useQuery<Block>(BLOCK, { errorPolicy: 'ignore', variables: { id } }); //TODO remove 'errorPolicy:ignore' after fix : "invalid input syntax for type bigint: \"0x1a2e718cad7558248775315fcb9130b19b7e0a2cc30f3077ea9820a337e316a5\""
   const { search, pathname, navigate } = useRouter();
+  const styles = useStyles();
   useErrorDisaply(error);
   const [activeTab, setActiveTab] = useState((search && queryString.parse(search)?.tab.toString()) || 'extrinsics');
   const blockData = data ? data?.blockByHash || data?.blockByBlockNumber : null;
