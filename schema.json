@@ -289,7 +289,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "DateTime",
+                  "name": "DateType",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -301,7 +301,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "DateTime",
+                  "name": "DateType",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -790,7 +790,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "DateTime",
+                  "name": "DateType",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -802,7 +802,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "DateTime",
+                  "name": "DateType",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -4244,7 +4244,7 @@
       },
       {
         "kind": "SCALAR",
-        "name": "DateTime",
+        "name": "DateType",
         "description": "The javascript `Date` as string. Type represents date and time as the ISO Date string.",
         "specifiedByUrl": null,
         "fields": null,
@@ -4268,7 +4268,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "DateType",
                 "ofType": null
               }
             },
@@ -4476,7 +4476,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "DateType",
                 "ofType": null
               }
             },
