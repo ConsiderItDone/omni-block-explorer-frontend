@@ -9,9 +9,9 @@ export const getTheme = (primaryColor: string): Theme => {
     },
     colors: {
       ...lightTheme,
-      primaryColor: primaryColor,
+      primary: primaryColor,
       modes: {
-        dark: darkTheme,
+        dark: { ...darkTheme, primary: primaryColor },
       },
     },
   };
