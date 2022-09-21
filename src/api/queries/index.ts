@@ -280,8 +280,8 @@ export const EXTRINSICS = gql`
     $callFunction: String
     $signedOnly: Boolean
     $skip: Int
-    $dateStart: DateTime = ""
-    $dateEnd: DateTime = ""
+    $dateStart: DateType = ""
+    $dateEnd: DateType = ""
     $signer: String = ""
   ) {
     extrinsics(
@@ -359,8 +359,8 @@ export const EVENTS = gql`
     $callModule: String
     $eventName: String
     $skip: Int
-    $dateStart: DateTime
-    $dateEnd: DateTime
+    $dateStart: DateType
+    $dateEnd: DateType
     $extrinsicHash: String
   ) {
     events(
