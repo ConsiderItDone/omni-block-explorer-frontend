@@ -22,13 +22,13 @@ const useSubscriptionOnQuery = () => {
   const [transfers, setTransfers] = useState<(HomePage_transfers | NewTransfers_newEventByName)[]>();
   const [chainData, setChainData] = useState(null);
   const { data: initialData, loading, error, refetch } = useQuery<HomePage>(HOMEPAGE);
-  const { data: blockSubscription } = useSubscription<NewBlocks>(SUBSCRIPTION_NEW_BLOCKS);
+  const { data: blockSubscription, error: berror } = useSubscription<NewBlocks>(SUBSCRIPTION_NEW_BLOCKS);
   const { data: transferSubscription } = useSubscription<NewTransfers>(SUBSCRIPTION_NEW_TRANSFERS);
 
   useErrorDisaply(error);
   useEffect(() => {
-    setBlocks(initialData?.blocks?.items.slice(0, 4));
-    setTransfers(initialData?.transfers?.items.slice(0, 4));
+    setBlocks(initialData?.blocks?.items.slice(0, 9));
+    setTransfers(initialData?.transfers?.items.slice(0, 9));
     setChainData({
       lastFinalizedBlock: initialData?.lastFinalizedBlock?.number || null,
       transferCount: initialData?.transfers?.totalCount || null,
@@ -36,15 +36,17 @@ const useSubscriptionOnQuery = () => {
     });
   }, [initialData]);
 
+  console.log('error', berror);
+
   useEffect(() => {
     blocks &&
       blockSubscription &&
       blockSubscription?.newBlock?.events?.length >= 1 &&
-      setBlocks((blocks) => [blockSubscription.newBlock, ...blocks].slice(0, 4));
+      setBlocks((blocks) => [blockSubscription.newBlock, ...blocks].slice(0, 9));
   }, [blockSubscription]);
 
   useEffect(() => {
-    transfers && setTransfers((transfers) => [transferSubscription?.newEventByName, ...transfers].slice(0, 4));
+    transfers && setTransfers((transfers) => [transferSubscription?.newEventByName, ...transfers].slice(0, 9));
   }, [transferSubscription]);
 
   return { chainData, blocks, transfers, loading, error, refetch };

@@ -11,6 +11,7 @@ export const useStyles = () => {
         display: 'flex',
         flexWrap: 'wrap',
         gap: '40px',
+        height: '100%',
         '.ant-table-wrapper': {
           width: 'calc(50% - 20px)',
           overflowY: 'auto',
