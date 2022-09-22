@@ -57,24 +57,6 @@ export const HOMEPAGE = gql`
       }
       totalCount
     }
-    allocations: events(take: 10, eventName: "NewAllocation", callModule: "allocations") {
-      totalCount
-      items {
-        block {
-          number
-          timestamp
-        }
-        data
-      }
-    }
-    validators {
-      items {
-        account {
-          address
-        }
-      }
-      totalCount
-    }
   }
 `;
 export const SUBSCRIPTION_NEW_BLOCKS = gql`
@@ -246,27 +228,6 @@ export const ACCOUNTS = gql`
           feeFrozen
           miscFrozen
           reserved
-        }
-      }
-      totalCount
-    }
-  }
-`;
-
-export const VALIDATORS = gql`
-  query Validators($skip: Int) {
-    validators(skip: $skip) {
-      items {
-        consumers
-        providers
-        account {
-          address
-          balance {
-            free
-            reserved
-            feeFrozen
-            miscFrozen
-          }
         }
       }
       totalCount
@@ -465,10 +426,6 @@ export const ACCOUNTBYADDRESS = gql`
       address
       nonce
       refcount
-      validator {
-        providers
-        consumers
-      }
       balance {
         free
         feeFrozen
@@ -553,20 +510,6 @@ export const ACCOUNTBYADDRESS = gql`
         validity
       }
     }
-    allocations: events(eventName: "NewAllocation", filters: { who: $address }) {
-      items {
-        block {
-          number
-          timestamp
-        }
-        extrinsic {
-          signer {
-            address
-          }
-        }
-        data
-      }
-    }
     transfersFrom: events(eventName: "Transfer", filters: { from: $address }) {
       items {
         extrinsic {
@@ -619,26 +562,6 @@ export const EVENT_FILTER_OPTIONS = gql`
         eventTypes {
           name
         }
-      }
-    }
-  }
-`;
-
-export const ALLOCATIONS = gql`
-  query Allocations($skip: Int, $filters: JSON) {
-    events(take: 10, eventName: "NewAllocation", callModule: "allocations", skip: $skip, filters: $filters) {
-      totalCount
-      items {
-        block {
-          number
-          timestamp
-        }
-        extrinsic {
-          signer {
-            address
-          }
-        }
-        data
       }
     }
   }

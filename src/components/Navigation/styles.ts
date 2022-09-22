@@ -7,6 +7,7 @@ export const useStyles = () => {
   const styles = useMemo(() => {
     return {
       navigation: <ThemeUIStyleObject>{
+        position: 'relative',
         padding: '40px',
         '.logo': { marginBottom: '60px' },
         '.logo img': { maxWidth: '118px' },

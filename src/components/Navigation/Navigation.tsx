@@ -17,11 +17,8 @@ export const navigationItems = [
       Transfers: ROUTES.transfers,
       Events: ROUTES.events,
       Accounts: ROUTES.accounts,
-      Validators: ROUTES.validators,
-      Allocations: ROUTES.allocations,
     },
   },
-  { title: 'Nodle', items: { 'Root Certificate': ROUTES.certificates, Applications: ROUTES.applications } },
   { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
 ];
 export default React.memo(() => {
@@ -65,7 +62,7 @@ export default React.memo(() => {
         </h3>
         {navigation}
       </div>
-      {/*<img className="bottom_logo" src={logoConsider} />*/}
+      <img className="bottom_logo" src={logoConsider} />
     </nav>
   );
 });

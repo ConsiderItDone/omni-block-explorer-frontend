@@ -12,7 +12,6 @@ import { transformExtrinsicData, columns as extrinsicColumns } from 'layouts/Ext
 import { transformTransferData, columns as transferColumns } from 'layouts/TransfersTable/utils';
 import { transformCertificate, columns as certificateColumns } from 'layouts/CertificatesTable/utils';
 import { transformApplicationData, columns as applicationColumns } from 'layouts/ApplicationsTable/utils';
-import { transformAllocationData, columns as allocationColumns } from 'layouts/AllocationsTable/util';
 import { normalizeCurrency } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
 import { useStyles } from './styles';
@@ -50,7 +49,6 @@ const AccountDetails: FC = () => {
         .map(transformCertificate),
     [data],
   );
-  const allocations = useMemo(() => data?.allocations?.items.map(transformAllocationData), [data]);
 
   return (
     <>
@@ -58,7 +56,7 @@ const AccountDetails: FC = () => {
       {data?.accountByAddress &&
         (() => {
           const {
-            accountByAddress: { address, nonce, refcount, validator },
+            accountByAddress: { address, nonce, refcount },
           } = data;
           const balance = data?.accountByAddress?.balance || {
             free: null,
@@ -92,7 +90,7 @@ const AccountDetails: FC = () => {
                       )}
                       <div>
                         <span className="label">Role</span>
-                        <span className="value">{validator ? 'Validator' : 'Receiver'}</span>
+                        <span className="value">{'Receiver'}</span>
                       </div>
                     </div>
                   </div>
@@ -172,18 +170,6 @@ const AccountDetails: FC = () => {
                       }
                     >
                       <Table dataSource={applications} columns={applicationColumns} />
-                    </TabPane>
-                  )}
-                  {allocations && (
-                    <TabPane
-                      key="allocations"
-                      tab={
-                        <>
-                          Allocations <span>({allocations?.length || 0})</span>
-                        </>
-                      }
-                    >
-                      <Table dataSource={allocations} columns={allocationColumns} />
                     </TabPane>
                   )}
                 </Tabs>
