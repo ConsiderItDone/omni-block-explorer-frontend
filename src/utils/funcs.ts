@@ -5,8 +5,12 @@ import { SI, SS58_FORMAT } from 'utils/consts';
 const SI_MID = 8;
 const DEFAULT_DECIMALS = 11;
 
-export const normalizeCurrency = (value: number | string = '0', decimals = DEFAULT_DECIMALS): number | string => {
-  return normalizeDenominated(value, decimals);
+export const normalizeCurrency = (
+  value: number | string = '0',
+  token = process.env.REACT_APP_TOKEN || 'ACA',
+  decimals = DEFAULT_DECIMALS,
+): number | string => {
+  return normalizeDenominated(value, token, decimals);
   /* 
   const text = value?.toString() || '0';
   const si = calcSi(text, decimals);
@@ -20,13 +24,18 @@ export const normalizeCurrency = (value: number | string = '0', decimals = DEFAU
   return `${formatDecimal(prefix || '0')}.${postfix} ${units}`;
    */
 };
-export const normalizeDenominated = (value: number | string = '0', decimals = DEFAULT_DECIMALS): string => {
+
+export const normalizeDenominated = (
+  value: number | string = '0',
+  token = process.env.REACT_APP_TOKEN || 'ACA',
+  decimals = DEFAULT_DECIMALS,
+): string => {
   const text = (value || '0').toString().padStart(decimals, '0');
   let postfix = text.slice(text.length - decimals);
   const prefix = text.replace(postfix, '') || '0';
   postfix = removeZeroPadding(postfix);
   const result = `${prefix}.${postfix}`;
-  return result + ' NODL';
+  return result + ` ${token}`;
 };
 
 export function removeZeroPadding(string: string | number): string {
