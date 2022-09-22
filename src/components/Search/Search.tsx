@@ -6,7 +6,7 @@ import { Search as SearchType } from 'queries/__generated__/Search';
 import { SEARCH } from 'queries';
 import { useNavigate } from 'react-router';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
-import { changeAddressPrefix } from 'utils/funcs';
+//import { changeAddressPrefix } from 'utils/funcs';
 import { useStyles } from './styles';
 
 const Search = Input.Search;
@@ -25,10 +25,12 @@ export default React.memo(() => {
     errorPolicy: 'ignore',
     variables: { value: searchValue },
   });
+
   const handleSearch = (input: string) => {
     const value = input.trim();
     //Checking if input is address, because there is no other way to check if input is address/hash/blockNumber
-    if (value.length === 48) {
+
+    /* if (value.length === 48) {
       const [parsed, error] = changeAddressPrefix(value);
       if (error) {
         notification.error({
@@ -40,7 +42,7 @@ export default React.memo(() => {
       }
       setSearchValue(parsed);
       return;
-    }
+    } */
     setSearchValue(value);
   };
 
@@ -64,8 +66,9 @@ export default React.memo(() => {
       });
       return;
     }
-    inputRef.current.state.value = '';
-    inputRef.current.blur();
+
+    inputRef.current.input.value = '';
+    inputRef.current?.blur();
 
     navigate(result);
   }, [data]);

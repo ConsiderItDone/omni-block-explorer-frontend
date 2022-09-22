@@ -22,7 +22,7 @@ const useSubscriptionOnQuery = () => {
   const [transfers, setTransfers] = useState<(HomePage_transfers | NewTransfers_newEventByName)[]>();
   const [chainData, setChainData] = useState(null);
   const { data: initialData, loading, error, refetch } = useQuery<HomePage>(HOMEPAGE);
-  const { data: blockSubscription, error: berror } = useSubscription<NewBlocks>(SUBSCRIPTION_NEW_BLOCKS);
+  const { data: blockSubscription } = useSubscription<NewBlocks>(SUBSCRIPTION_NEW_BLOCKS);
   const { data: transferSubscription } = useSubscription<NewTransfers>(SUBSCRIPTION_NEW_TRANSFERS);
 
   useErrorDisaply(error);
@@ -35,8 +35,6 @@ const useSubscriptionOnQuery = () => {
       signedExtrinsics: initialData?.signedExtrinsics?.totalCount || null,
     });
   }, [initialData]);
-
-  console.log('error', berror);
 
   useEffect(() => {
     blocks &&

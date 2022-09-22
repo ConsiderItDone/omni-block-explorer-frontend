@@ -358,6 +358,12 @@ export const EVENTS = gql`
 
 export const SEARCH = gql`
   query Search($value: String!) {
+    accountByAddress(address: $value) {
+      address
+    }
+    blockByHash(hash: $value) {
+      hash
+    }
     blockByBlockNumber(number: $value) {
       number
     }
@@ -366,12 +372,6 @@ export const SEARCH = gql`
         number
       }
       index
-    }
-    accountByAddress(address: $value) {
-      address
-    }
-    blockByHash(hash: $value) {
-      hash
     }
   }
 `;
