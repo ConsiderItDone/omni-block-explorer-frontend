@@ -12,10 +12,6 @@ const TransfersTable = lazy(() => import('../../layouts/TransfersTable/Transfers
 const ExtrinsicsTable = lazy(() => import('../../layouts/ExtrinsicsTable/ExtrinsicsTable'));
 const ExtrinsicsDetails = lazy(() => import('../../layouts/ExtrinsicsDetails/ExtrinsicsDetails'));
 const Events = lazy(() => import('../../layouts/EventsTable/EventsTable'));
-const Applications = lazy(() => import('../../layouts/ApplicationsTable/ApplicationsTable'));
-const Certificates = lazy(() => import('../../layouts/CertificatesTable/CertificatesTable'));
-const ValidatorsTable = lazy(() => import('../../layouts/ValidatorsTable/ValidatorsTable'));
-const AllocationsTable = lazy(() => import('../../layouts/AllocationsTable/AllocationsTable'));
 const TransferDetails = lazy(() => import('../../layouts/TransferDetails/TransferDetails'));
 const OmniGraph = lazy(() => import('../../layouts/OmniGraph/OmniGraph'));
 const ColorScheme = lazy(() => import('../../layouts/ColorScheme/ColorScheme'));
@@ -56,22 +52,6 @@ const routedComponents = [
   {
     component: Events,
     path: `${ROUTES.events}`,
-  },
-  {
-    component: Certificates,
-    path: `${ROUTES.certificates}`,
-  },
-  {
-    component: Applications,
-    path: `${ROUTES.applications}`,
-  },
-  {
-    component: ValidatorsTable,
-    path: `${ROUTES.validators}`,
-  },
-  {
-    component: AllocationsTable,
-    path: `${ROUTES.allocations}`,
   },
   {
     component: TransferDetails,

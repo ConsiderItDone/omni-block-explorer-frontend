@@ -1,7 +1,6 @@
 export { default as LayoutBlocks } from './BlocksTable/BlocksTable';
 export { default as Layout_Block } from './BlockDetails/BlockDetails';
 export { default as LayoutAccounts } from './AccountsTable/AccountsTable';
-export { default as ValidatorsTable } from './ValidatorsTable/ValidatorsTable';
 export { default as AccountDetails } from './AccountDetails/AccountDetails';
 export { default as Home } from './Home/Home';
 export { default as TransfersTable } from './TransfersTable/TransfersTable';

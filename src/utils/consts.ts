@@ -12,10 +12,6 @@ export const ROUTES = {
   extrinsics: '/extrinsic',
   events: '/event',
   transfers: '/transfer',
-  validators: '/validator',
-  certificates: '/certificate',
-  applications: '/application',
-  allocations: '/allocation',
   omnigraph: '/network',
   color_schemes: '/color_scheme',
 };
