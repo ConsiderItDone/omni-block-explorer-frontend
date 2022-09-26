@@ -101,6 +101,7 @@ jobs:
         run: |
           NETWORK=${{ matrix.network }}
           echo "CHART=${NETWORK,,}" >> $GITHUB_ENV
+          echo "IMAGE_TAG=${NETWORK,,}-$(echo ${GITHUB_SHA:0:7})" >> $GITHUB_ENV
 
           cat $GITHUB_ENV
           cat << EOF > .env-${{ matrix.network }}.yaml
@@ -123,5 +124,5 @@ jobs:
             aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin ${{env.PRIVATE_REGISTRY}} && \
               kubectl get pods && helm ls && \
               helm upgrade ${{ env.CHART }} -i --atomic -f .env-${{ matrix.network }}.yaml oci://${{env.PRIVATE_REGISTRY}}/helm-omni-front --version 0.1.4 \
-              --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${NETWORK,,}-$(echo ${GITHUB_SHA:0:7}) && \
+              --set=omniFront.image.repository=${{env.PRIVATE_REGISTRY}}/dev-omni-front,omniFront.image.tag=${{env.IMAGE_TAG}} && \
               helm ls && kubectl get pods
