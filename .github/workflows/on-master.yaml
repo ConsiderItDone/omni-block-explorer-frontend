@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - helm-fix
 
 jobs:
   build:
