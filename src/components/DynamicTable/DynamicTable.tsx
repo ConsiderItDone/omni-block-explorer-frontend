@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import React, { useState } from 'react';
+import React from 'react';
 import { TableProps } from 'antd/lib/table';
 import Table from 'components/Table/Table';
 import { gql, useQuery } from '@apollo/client';
@@ -10,11 +10,11 @@ interface Props extends TableProps<any> {
 }
 
 const DynamicTable: React.FC<Props> = (props) => {
-  const { search, navigate, queryObj, skip } = useRouter();
+  const { /* search, navigate, queryObj, */ skip } = useRouter();
 
-  const [dataSource, setDataSource] = useState([{ sender: 'mike', token: 'DOT', amount: '100' }]);
+  //const [dataSource, setDataSource] = useState([{ sender: 'mike', token: 'DOT', amount: '100' }]);
 
-  const { data, loading, error, refetch } = useQuery(gql(props.query), {
+  const { data, loading /*,  error, refetch */ } = useQuery(gql(props.query), {
     variables: {
       skip,
     },

@@ -1,29 +1,29 @@
 {
-    "version": "1",
-    "network": "Acala",
-    "routes": {
-        "deposit": {
-            "title": "Deposit",
-            "components": [
-                {
-                    "type": "table",
-                    "columns": [
-                        {
-                            "title": "Sender",
-                            "dataIndex": "address"
-                        },
-                        {
-                            "title": "Amount",
-                            "dataIndex": "balance.free"
-                        },
-                        {
-                            "title": "Token",
-                            "dataIndex": "token"
-                        }
-                    ],
-                    "query": "query Accounts($skip: Int) { accounts(take: 10, skip: $skip) { items { address balance { free feeFrozen miscFrozen reserved } } totalCount } }"
-                }
-            ]
+  "version": "1",
+  "network": "Acala",
+  "routes": {
+    "deposit": {
+      "title": "Deposit",
+      "components": [
+        {
+          "type": "table",
+          "columns": [
+            {
+              "title": "Sender",
+              "dataIndex": "address"
+            },
+            {
+              "title": "Amount",
+              "dataIndex": "balance.free"
+            },
+            {
+              "title": "Token",
+              "dataIndex": "token"
+            }
+          ],
+          "query": "query Accounts($skip: Int) { accounts(take: 10, skip: $skip) { items { address balance { free feeFrozen miscFrozen reserved } } totalCount } }"
         }
+      ]
     }
+  }
 }
