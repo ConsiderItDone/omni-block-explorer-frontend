@@ -10,6 +10,7 @@ import { ThemeProvider } from 'theme-ui';
 import { getTheme } from './themes';
 import { Global } from '@emotion/react';
 import { getGlobalStyles } from './styles';
+import customRoutes from './modules/router/customRoutes';
 
 const loadingNode = (
   <div className="spin-container">
@@ -30,6 +31,7 @@ const App: FC = () => {
             <Suspense fallback={loadingNode}>
               <Routes>
                 {routedLayouts}
+                {customRoutes}
                 <Route element={<div>404</div>} />
               </Routes>
             </Suspense>
