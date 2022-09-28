@@ -4,30 +4,30 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'utils/consts';
 import { useStyles } from './styles';
-import { getNetworkConfig } from '../../modules/router/customRoutes';
+import { useAppConfig } from 'utils/hooks';
+import { RouteConfig } from 'utils/configUtils';
 //eslint-disable-next-line
 const logoConsider = require('images/logo_consider.png');
 
-function getCustomNavigation() {
-  const config = getNetworkConfig();
-  const routes = config.routes ? Object.keys(config.routes) : [];
+function getCustomNavigation(title: string, customRoutes: Record<string, RouteConfig>) {
+  const routes = customRoutes ? Object.keys(customRoutes) : [];
   const navItems = {};
 
   routes.forEach((path) => {
-    const route = config.routes[path];
+    const route = customRoutes[path];
     navItems[route?.title || path] = '/' + path;
   });
 
   if (!routes.length) return {};
 
   return {
-    title: config.network,
+    title: title,
     items: navItems,
   };
 }
 
-export const navigationItems = [
-  {
+export const getNavigationItems = (title?: string, customRoutes?: Record<string, RouteConfig>) => {
+  const base = {
     title: 'Blockchain',
     items: {
       OmniGraph: ROUTES.omnigraph,
@@ -37,36 +37,41 @@ export const navigationItems = [
       Events: ROUTES.events,
       Accounts: ROUTES.accounts,
     },
-  },
-  { ...getCustomNavigation() },
-  { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
-];
+  };
+
+  const custom = title && customRoutes ? getCustomNavigation(title, customRoutes) : {};
+
+  const settings = { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } };
+
+  return [base, custom, settings].filter((i) => i.title && Object.keys(i.items).length);
+};
 
 export default React.memo(() => {
   const { pathname } = useLocation();
+  const config = useAppConfig();
+  const navigationItems = getNavigationItems(config?.network, config?.routes);
+
   const styles = useStyles();
 
   const navigation = useMemo(
     () =>
-      navigationItems
-        .filter((i) => i.title && Object.keys(i.items).length)
-        .map((i) => (
-          <div key={i.title}>
-            <div className="divider" />
-            <h3 className="nav_header nav_header_title">{i.title}</h3>
-            {i.items && (
-              <ul className="nav_list">
-                {Object.keys(i.items).map((k) => (
-                  <li key={k} className="nav_item">
-                    <Link to={i.items[k]} className={pathname.startsWith(i.items[k]) ? 'active' : ''}>
-                      {k}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )),
+      navigationItems.map((i) => (
+        <div key={i.title}>
+          <div className="divider" />
+          <h3 className="nav_header nav_header_title">{i.title}</h3>
+          {i.items && (
+            <ul className="nav_list">
+              {Object.keys(i.items).map((k) => (
+                <li key={k} className="nav_item">
+                  <Link to={i.items[k]} className={pathname.startsWith(i.items[k]) ? 'active' : ''}>
+                    {k}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )),
     [pathname],
   );
 

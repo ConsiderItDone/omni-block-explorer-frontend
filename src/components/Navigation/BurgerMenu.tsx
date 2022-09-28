@@ -1,9 +1,9 @@
 /** @jsxImportSource theme-ui */
 import React, { useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { navigationItems } from '../Navigation/Navigation';
+import { getNavigationItems } from '../Navigation/Navigation';
 import { Button } from 'antd';
-import { useRouter } from 'utils/hooks';
+import { useAppConfig, useRouter } from 'utils/hooks';
 import { OverlayContext } from 'components/Overlay/Overlay';
 import { useStyles } from './styles';
 
@@ -11,7 +11,12 @@ export default React.memo(() => {
   const overlayContext = useContext(OverlayContext);
   const { setOverlayActive } = overlayContext;
   const { pathname } = useRouter();
+
   const styles = useStyles();
+
+  const config = useAppConfig();
+
+  const navigationItems = getNavigationItems(config?.network, config?.routes);
 
   const navigation = useMemo(
     () => (

@@ -1,0 +1,29 @@
+{
+  "version": "1",
+  "network": "Acala",
+  "routes": {
+    "deposit": {
+      "title": "Custom Events",
+      "components": [
+        {
+          "type": "table",
+          "columns": [
+            {
+              "title": "Extrinsic Hash",
+              "dataIndex": "extrinsicHash"
+            },
+            {
+              "title": "Module",
+              "dataIndex": "module.name"
+            },
+            {
+              "title": "Event",
+              "dataIndex": "eventType.name"
+            }
+          ],
+          "query": "query Events($skip: Int) { events(take: 10, skip: $skip) { items { extrinsicHash module { name } eventType { name } } totalCount }}"
+        }
+      ]
+    }
+  }
+}
