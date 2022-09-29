@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - graphql-playground
 
 jobs:
   build:
@@ -12,14 +13,14 @@ jobs:
         network: [ACALA, NODLE]
     env:
       # ACALA
-      ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "https://acala-graphql.demo.omnitech.one/"
+      ACALA_REACT_APP_OMNI_SERVER_ENDPOINT: "https://acala-graphql.demo.omnitech.one/playground"
       ACALA_REACT_APP_OMNI_WS_ENDPOINT: "wss://acala-api.demo.omnitech.one/graphql"
       ACALA_REACT_APP_OMNI_SS58_FORMAT: 37
       ACALA_REACT_APP_GRAPHQL_ENDPOINT: "https://acala-api.demo.omnitech.one/graphql"
       ACALA_REACT_APP_PRIMARY_COLOR: "#F40079"
       ACALA_REACT_APP_LOGO_SR: "https://polkadot.js.org/apps/static/acala.696aa448..svg"
       # NODLE
-      NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-graphql.demo.omnitech.one/"
+      NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-graphql.demo.omnitech.one/playground"
       NODLE_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_OMNI_SS58_FORMAT: 38
       NODLE_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
