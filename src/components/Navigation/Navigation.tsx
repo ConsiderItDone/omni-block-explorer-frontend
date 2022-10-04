@@ -30,16 +30,15 @@ export const getNavigationItems = (title?: string, customRoutes?: Record<string,
   const base = {
     title: 'Blockchain',
     items: {
-      OmniGraph: ROUTES.omnigraph,
       Blocks: ROUTES.blocks,
       Extrinsics: ROUTES.extrinsics,
       Transfers: ROUTES.transfers,
       Events: ROUTES.events,
       Accounts: ROUTES.accounts,
-    },
+    } as Record<string, string>,
   };
 
-  const withOmniGraph = Boolean(process.env.REACT_APP_GRAPHQL_ENDPOINT);
+  const withOmniGraph = process.env.REACT_APP_GRAPHQL_ENDPOINT?.length > 0;
   if (withOmniGraph) {
     base.items = { OmniGraph: ROUTES.omnigraph, ...base.items };
   }
