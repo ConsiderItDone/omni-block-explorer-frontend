@@ -16,6 +16,7 @@ import './Home.module.styl';
 import { numberWithCommas } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
 import { useStyles } from './styles';
+import AppLoader from 'components/AppLoader/AppLoader';
 
 const useSubscriptionOnQuery = () => {
   const [blocks, setBlocks] = useState<(HomePage_blocks_items | NewBlocks_newBlock)[]>();
@@ -63,9 +64,9 @@ export const LayoutHome: FC = () => {
         {chainData && (
           <div className="chainData fullWidth">
             <h2 className="title">Chain Data</h2>
-            <div className="data">
+            <div className="data" sx={{ height: '100%' }}>
               {loading ? (
-                <Spin />
+                <Spin size="large" />
               ) : (
                 <>
                   <div>
@@ -87,39 +88,43 @@ export const LayoutHome: FC = () => {
           </div>
         )}
         <div className="tables">
-          {loading && <Spin size="large" />}
-
-          {blocks && (
-            <Table
-              dataSource={blockss}
-              columns={blockColumns}
-              pagination={false}
-              header={
-                <>
-                  <h3>Latest Blocks</h3>
-                  <Link to={ROUTES.blocks} className="ant-btn">
-                    See all
-                  </Link>
-                </>
-              }
-            />
-          )}
-          {transfers && (
-            <Table
-              dataSource={transferss}
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              //@ts-ignore
-              columns={transferColumns}
-              pagination={false}
-              header={
-                <>
-                  <h3>Transfers</h3>
-                  <Link to={ROUTES.transfers} className="ant-btn">
-                    See all
-                  </Link>
-                </>
-              }
-            />
+          {loading ? (
+            <AppLoader width={'100%'} height={'50vh'} />
+          ) : (
+            <>
+              {blocks && (
+                <Table
+                  dataSource={blockss}
+                  columns={blockColumns}
+                  pagination={false}
+                  header={
+                    <>
+                      <h3>Latest Blocks</h3>
+                      <Link to={ROUTES.blocks} className="ant-btn">
+                        See all
+                      </Link>
+                    </>
+                  }
+                />
+              )}
+              {transfers && (
+                <Table
+                  dataSource={transferss}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  //@ts-ignore
+                  columns={transferColumns}
+                  pagination={false}
+                  header={
+                    <>
+                      <h3>Transfers</h3>
+                      <Link to={ROUTES.transfers} className="ant-btn">
+                        See all
+                      </Link>
+                    </>
+                  }
+                />
+              )}
+            </>
           )}
         </div>
       </div>

@@ -9,6 +9,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "removeComments": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "jsx": "react",
   }

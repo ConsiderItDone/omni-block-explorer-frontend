@@ -12,14 +12,3 @@ export const columns = generateColumns(accountItemFullInfo, {
   address: { disabled: true },
   free: { title: 'Balance' },
 });
-
-const vestingTableItem = {
-  period: '100',
-  periodCount: 10,
-  start: '1000',
-  perPeriod: 10,
-};
-export const vestingScheduleColumns = generateColumns(vestingTableItem, {
-  perPeriod: { title: 'Per Period' },
-  periodCount: { title: 'Period Count' },
-});

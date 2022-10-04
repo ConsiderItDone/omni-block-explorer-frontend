@@ -376,50 +376,6 @@ export const SEARCH = gql`
   }
 `;
 
-export const ROOT_CERTIFICATES = gql`
-  query RootCertificates($skip: Int!) {
-    rootCertificates(skip: $skip) {
-      items {
-        owner {
-          address
-        }
-        key {
-          address
-        }
-        revoked
-        childRevocations
-        created
-        renewed
-        validity
-      }
-      totalCount
-    }
-  }
-`;
-
-export const APPLICATIONS = gql`
-  query Applications($skip: Int!) {
-    applications(skip: $skip, take: 10) {
-      items {
-        candidate {
-          address
-        }
-        candidateDeposit
-        metadata
-        challenger {
-          address
-        }
-        challengerDeposit
-
-        createdBlock
-        challengedBlock
-        status
-      }
-      totalCount
-    }
-  }
-`;
-
 export const ACCOUNTBYADDRESS = gql`
   query AccountByAddress($address: String!) {
     accountByAddress(address: $address) {
@@ -447,67 +403,6 @@ export const ACCOUNTBYADDRESS = gql`
           name
         }
         params
-      }
-      vestingSchedules {
-        start
-        period
-        perPeriod
-        periodCount
-      }
-
-      applicationsByCandidate {
-        candidate {
-          address
-        }
-        candidateDeposit
-        metadata
-        challenger {
-          address
-        }
-        challengerDeposit
-        createdBlock
-        challengedBlock
-        status
-      }
-      applicationsByChallenger {
-        candidate {
-          address
-        }
-        candidateDeposit
-        metadata
-        challenger {
-          address
-        }
-        challengerDeposit
-        createdBlock
-        challengedBlock
-        status
-      }
-      rootCertificatesByKey {
-        owner {
-          address
-        }
-        key {
-          address
-        }
-        revoked
-        childRevocations
-        created
-        renewed
-        validity
-      }
-      rootCertificatesByOwner {
-        owner {
-          address
-        }
-        key {
-          address
-        }
-        revoked
-        childRevocations
-        created
-        renewed
-        validity
       }
     }
     transfersFrom: events(eventName: "Transfer", filters: { from: $address }) {
