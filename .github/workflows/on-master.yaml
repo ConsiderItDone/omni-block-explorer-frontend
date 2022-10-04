@@ -18,6 +18,8 @@ jobs:
       ACALA_REACT_APP_GRAPHQL_ENDPOINT: "https://acala-graphql.demo.omnitech.one"
       ACALA_REACT_APP_PRIMARY_COLOR: "#F40079"
       ACALA_REACT_APP_LOGO_SR: "https://polkadot.js.org/apps/static/acala.696aa448..svg"
+      ACALA_REACT_APP_TOKEN: "ACA"
+      ACALA_REACT_APP_CONFIG_URL: "/acala.config.json"
       # NODLE
       NODLE_REACT_APP_OMNI_SERVER_ENDPOINT: "https://nodle-api.demo.omnitech.one/graphql"
       NODLE_REACT_APP_OMNI_WS_ENDPOINT: "wss://nodle-api.demo.omnitech.one/graphql"
@@ -25,6 +27,8 @@ jobs:
       NODLE_REACT_APP_GRAPHQL_ENDPOINT: "https://nodle-graphql.demo.omnitech.one"
       NODLE_REACT_APP_PRIMARY_COLOR: "#19AE82"
       NODLE_REACT_APP_LOGO_SR: "https://polkadot.js.org/apps/static/nodle.3df6bc14..svg"
+      NODLE_REACT_APP_TOKEN: "NODL"
+      NODLE_REACT_APP_CONFIG_URL: ""
     name: Run docker build
     runs-on: ubuntu-latest
     outputs:
