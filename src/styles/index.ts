@@ -25,6 +25,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
   },
   main: {
     width: '100%',
+    minHeight: '100vh',
     overflow: 'hidden',
     padding: '40px',
     marginBottom: 'auto',

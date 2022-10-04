@@ -5,13 +5,10 @@ import { ACCOUNTBYADDRESS } from 'queries';
 import { AccountByAddress } from 'queries/__generated__/AccountByAddress';
 import { Spin, Tabs } from 'antd';
 import { Copy, Table } from 'components';
-import { vestingScheduleColumns } from './util';
 import { useParams } from 'react-router-dom';
 
 import { transformExtrinsicData, columns as extrinsicColumns } from 'layouts/ExtrinsicsTable/utils';
 import { transformTransferData, columns as transferColumns } from 'layouts/TransfersTable/utils';
-import { transformCertificate, columns as certificateColumns } from 'layouts/CertificatesTable/utils';
-import { transformApplicationData, columns as applicationColumns } from 'layouts/ApplicationsTable/utils';
 import { normalizeCurrency } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
 import { useStyles } from './styles';
@@ -30,23 +27,6 @@ const AccountDetails: FC = () => {
   const extrinsics = useMemo(() => data?.accountByAddress?.extrinsics?.map(transformExtrinsicData), [data]);
   const transfers = useMemo(
     () => data?.transfersFrom?.items.concat(data?.transfersTo?.items).map(transformTransferData).filter(Boolean),
-    [data],
-  );
-
-  const vestingSchedules = useMemo(() => data?.accountByAddress?.vestingSchedules, [data]);
-
-  const applications = useMemo(
-    () =>
-      data?.accountByAddress?.applicationsByCandidate
-        ?.concat(data?.accountByAddress?.applicationsByChallenger)
-        .map(transformApplicationData),
-    [data],
-  );
-  const certificates = useMemo(
-    () =>
-      data?.accountByAddress?.rootCertificatesByKey
-        ?.concat(data?.accountByAddress?.rootCertificatesByOwner)
-        .map(transformCertificate),
     [data],
   );
 
@@ -134,42 +114,6 @@ const AccountDetails: FC = () => {
                       }
                     >
                       <Table dataSource={transfers} columns={transferColumns} />
-                    </TabPane>
-                  )}
-                  {vestingSchedules && (
-                    <TabPane
-                      key="vestingSchedules"
-                      tab={
-                        <>
-                          Vesting Schedules <span>({vestingSchedules?.length || 0})</span>
-                        </>
-                      }
-                    >
-                      <Table dataSource={vestingSchedules} columns={vestingScheduleColumns} />
-                    </TabPane>
-                  )}
-                  {certificates && (
-                    <TabPane
-                      key="certificates"
-                      tab={
-                        <>
-                          Root Certificates <span>({certificates?.length || 0})</span>
-                        </>
-                      }
-                    >
-                      <Table dataSource={certificates} columns={certificateColumns} />
-                    </TabPane>
-                  )}
-                  {applications && (
-                    <TabPane
-                      key="applications"
-                      tab={
-                        <>
-                          Applications <span>({applications?.length || 0}) </span>
-                        </>
-                      }
-                    >
-                      <Table dataSource={applications} columns={applicationColumns} />
                     </TabPane>
                   )}
                 </Tabs>
