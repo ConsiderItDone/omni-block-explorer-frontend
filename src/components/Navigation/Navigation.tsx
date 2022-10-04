@@ -9,30 +9,6 @@ import { RouteConfig } from 'utils/configUtils';
 //eslint-disable-next-line
 const logoConsider = require('images/logo_consider.png');
 
-const getNaivItems = () => {
-  let base: Record<string, string> = {
-    Blocks: ROUTES.blocks,
-    Extrinsics: ROUTES.extrinsics,
-    Transfers: ROUTES.transfers,
-    Events: ROUTES.events,
-    Accounts: ROUTES.accounts,
-  };
-
-  const withOmniGraph = Boolean(process.env.REACT_APP_GRAPHQL_ENDPOINT);
-  if (withOmniGraph) {
-    base = { OmniGraph: ROUTES.omnigraph, ...base };
-  }
-
-  return base;
-};
-
-export const navigationItems = [
-  {
-    title: 'Blockchain',
-    items: getNaivItems(),
-  },
-  { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
-];
 function getCustomNavigation(title: string, customRoutes: Record<string, RouteConfig>) {
   const routes = customRoutes ? Object.keys(customRoutes) : [];
   const navItems = {};
@@ -62,6 +38,11 @@ export const getNavigationItems = (title?: string, customRoutes?: Record<string,
       Accounts: ROUTES.accounts,
     },
   };
+
+  const withOmniGraph = Boolean(process.env.REACT_APP_GRAPHQL_ENDPOINT);
+  if (withOmniGraph) {
+    base.items = { OmniGraph: ROUTES.omnigraph, ...base.items };
+  }
 
   const custom = title && customRoutes ? getCustomNavigation(title, customRoutes) : {};
 
