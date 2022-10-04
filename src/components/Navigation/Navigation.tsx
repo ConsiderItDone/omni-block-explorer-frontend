@@ -7,20 +7,31 @@ import { useStyles } from './styles';
 //eslint-disable-next-line
 const logoConsider = require('images/logo_consider.png');
 
+const getNaivItems = () => {
+  let base: Record<string, string> = {
+    Blocks: ROUTES.blocks,
+    Extrinsics: ROUTES.extrinsics,
+    Transfers: ROUTES.transfers,
+    Events: ROUTES.events,
+    Accounts: ROUTES.accounts,
+  };
+
+  const withOmniGraph = Boolean(process.env.REACT_APP_GRAPHQL_ENDPOINT);
+  if (withOmniGraph) {
+    base = { OmniGraph: ROUTES.omnigraph, ...base };
+  }
+
+  return base;
+};
+
 export const navigationItems = [
   {
     title: 'Blockchain',
-    items: {
-      OmniGraph: ROUTES.omnigraph,
-      Blocks: ROUTES.blocks,
-      Extrinsics: ROUTES.extrinsics,
-      Transfers: ROUTES.transfers,
-      Events: ROUTES.events,
-      Accounts: ROUTES.accounts,
-    },
+    items: getNaivItems(),
   },
   { title: 'Settings', items: { 'Color Scheme': ROUTES.color_schemes } },
 ];
+
 export default React.memo(() => {
   const { pathname } = useLocation();
   const styles = useStyles();
