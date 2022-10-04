@@ -47,6 +47,8 @@ jobs:
           echo "REACT_APP_GRAPHQL_ENDPOINT=${{ env.ACALA_REACT_APP_GRAPHQL_ENDPOINT }}" >> $GITHUB_ENV
           echo "REACT_APP_PRIMARY_COLOR=${{ env.ACALA_REACT_APP_PRIMARY_COLOR }}" >> $GITHUB_ENV
           echo "REACT_APP_LOGO_SR=${{ env.ACALA_REACT_APP_LOGO_SR }}" >> $GITHUB_ENV
+          echo "REACT_APP_TOKEN=${{ env.ACALA_REACT_APP_TOKEN }}" >> $GITHUB_ENV
+          echo "REACT_APP_CONFIG_URL=${{ env.ACALA_REACT_APP_CONFIG_URL }}" >> $GITHUB_ENV
 
           cat $GITHUB_ENV
       - name: Create & View env file NODLE
@@ -58,6 +60,8 @@ jobs:
           echo "REACT_APP_GRAPHQL_ENDPOINT=${{ env.NODLE_REACT_APP_GRAPHQL_ENDPOINT }}" >> $GITHUB_ENV
           echo "REACT_APP_PRIMARY_COLOR=${{ env.NODLE_REACT_APP_PRIMARY_COLOR }}" >> $GITHUB_ENV
           echo "REACT_APP_LOGO_SR=${{ env.NODLE_REACT_APP_LOGO_SR }}" >> $GITHUB_ENV
+          echo "REACT_APP_TOKEN=${{ env.NODLE_REACT_APP_TOKEN }}" >> $GITHUB_ENV
+          echo "REACT_APP_CONFIG_URL=${{ env.NODLE_REACT_APP_CONFIG_URL }}" >> $GITHUB_ENV
 
           cat $GITHUB_ENV
       - name: Build the Docker image ${{ matrix.network }}
