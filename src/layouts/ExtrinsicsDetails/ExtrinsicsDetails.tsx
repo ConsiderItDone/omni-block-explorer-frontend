@@ -28,6 +28,7 @@ const Layout_Extrinsics: FC<Params> = () => {
 
   const { data, loading, error } = useQuery<ExtrinsicsDetails>(EXTRINSICSDETAILTS, {
     variables: { id },
+    errorPolicy: 'ignore',
   });
   useErrorDisaply(error);
   const [activeTab, setActiveTab] = useState((search && queryString.parse(search)?.tab.toString()) || 'event');
