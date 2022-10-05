@@ -58,14 +58,18 @@ const routedComponents = [
     path: `${ROUTES.transfers}/:id`,
   },
   {
-    component: OmniGraph,
-    path: `${ROUTES.omnigraph}`,
-  },
-  {
     component: ColorScheme,
     path: `${ROUTES.color_schemes}`,
   },
 ];
+const withOmniGraph = process.env.REACT_APP_GRAPHQL_ENDPOINT?.length > 0;
+
+if (withOmniGraph) {
+  routedComponents.push({
+    component: OmniGraph,
+    path: `${ROUTES.omnigraph}`,
+  });
+}
 
 export default routedComponents.map((layout) => (
   <Route path={layout.path} key={layout.path} element={<layout.component />} />
