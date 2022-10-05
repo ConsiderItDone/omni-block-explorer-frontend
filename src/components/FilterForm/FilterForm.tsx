@@ -221,6 +221,10 @@ const FilterForm: FC<FilterFormProps> = ({ title, titleAddon, mode, initialValue
         !expanded &&
         window.innerWidth > RESPONSIVE_BREAKPOINTS.sm
       ) {
+        if (keyChanged === 'callModule') {
+          console.log('if2');
+          form.setFieldValue(mode === 'extrinsic' ? 'callFunction' : 'eventName', 'All');
+        }
         handleSubmit(allValues);
       }
     },
