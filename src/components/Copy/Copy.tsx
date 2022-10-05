@@ -1,5 +1,6 @@
 /** @jsxImportSource theme-ui */
 import React, { FC } from 'react';
+//@ts-ignore
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { notification } from 'antd';
 import styles from './styles';
