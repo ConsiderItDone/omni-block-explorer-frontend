@@ -1,12 +1,12 @@
 /** @jsxImportSource theme-ui */
 import { useQuery } from '@apollo/client';
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { ACCOUNTBYADDRESS } from 'queries';
 import { AccountByAddress } from 'queries/__generated__/AccountByAddress';
 import { Spin, Tabs } from 'antd';
 import { Copy, Table } from 'components';
 import { useParams } from 'react-router-dom';
-
+import {toast} from 'react-toastify'
 import { transformExtrinsicData, columns as extrinsicColumns } from 'layouts/ExtrinsicsTable/utils';
 import { transformTransferData, columns as transferColumns } from 'layouts/TransfersTable/utils';
 import { normalizeCurrency } from 'utils/funcs';
@@ -30,6 +30,12 @@ const AccountDetails: FC = () => {
     () => data?.transfersFrom?.items.concat(data?.transfersTo?.items).map(transformTransferData).filter(Boolean),
     [data],
   );
+  useEffect(()=>{
+    if(data?.accountByAddress === null && (data.transfersFrom ||data.transfersTo)){
+      toast.info("Account isn't processed yet")
+    }
+    console.log('data', data)
+  },[data])
 
   return (
     <>
