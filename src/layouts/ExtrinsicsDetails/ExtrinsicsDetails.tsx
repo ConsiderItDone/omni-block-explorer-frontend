@@ -59,7 +59,7 @@ const Layout_Extrinsics: FC<Params> = () => {
             index,
             fee,
           } = extrinsicsData;
-          const resultFee = fee.inclusionFee.baseFee + fee.inclusionFee.lenFee;
+          const resultFee = fee?.inclusionFee ? fee.inclusionFee?.baseFee + fee.inclusionFee?.lenFee : '';
 
           return (
             <>
@@ -119,10 +119,12 @@ const Layout_Extrinsics: FC<Params> = () => {
                     <div className="primary">Result</div>
                     <div className="secondary">{success ? 'Yes' : 'No'}</div>
                   </div>
-                  <div>
-                    <div className="primary">Fee</div>
-                    <div className="secondary">{normalizeCurrency(resultFee)}</div>
-                  </div>
+                  {resultFee && (
+                    <div>
+                      <div className="primary">Fee</div>
+                      <div className="secondary">{normalizeCurrency(resultFee)}</div>
+                    </div>
+                  )}
                 </div>
               </div>
               <Tabs activeKey={activeTab} onChange={handleTabChange} className="tabs">
