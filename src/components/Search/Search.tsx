@@ -1,11 +1,12 @@
 /** @jsxImportSource theme-ui */
 import React, { useEffect, useState, useRef } from 'react';
-import { Input, Button, notification } from 'antd';
+import { Input, Button } from 'antd';
 import { useQuery } from '@apollo/client';
 import { Search as SearchType } from 'queries/__generated__/Search';
 import { SEARCH } from 'queries';
 import { useNavigate } from 'react-router';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
+import { toast } from 'react-toastify';
 //import { changeAddressPrefix } from 'utils/funcs';
 import { useStyles } from './styles';
 
@@ -60,10 +61,7 @@ export default React.memo(() => {
       (extrinsicById?.block && `${ROUTES.extrinsics}/${extrinsicById?.block.number + '-' + extrinsicById.index}`);
 
     if (!result) {
-      notification.error({
-        message: 'Error',
-        description: `${searchValue} was not found`,
-      });
+      toast.error(`${searchValue} was not found`);
       return;
     }
 
