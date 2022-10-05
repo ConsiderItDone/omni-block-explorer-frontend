@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router';
 import { ApolloError } from '@apollo/client';
 import queryString from 'query-string';
-import { notification } from 'antd';
+import { toast } from 'react-toastify';
 
 import { getNetworkConfig } from '../modules/router/customRoutes';
 import { ConfigContext } from '../modules/providers/config';
@@ -24,7 +24,7 @@ export const useRouter = (): {
 export const useErrorDisaply = (error: ApolloError) => {
   useEffect(() => {
     if (error) {
-      notification.error({ message: error?.name, description: error?.message });
+      toast.error(error?.message);
       console.log(JSON.stringify(error));
     }
   }, [error]);
@@ -47,7 +47,7 @@ export const useAppInit = (url?: string): AppInitializationProps => {
     getNetworkConfig(url)
       .then((config) => setState({ loading: false, config: config, error: null }))
       .catch((e) => {
-        notification['error']({ message: e });
+        toast.error(e);
         setState({ loading: false, config: null, error: e });
       });
   }, [url]);

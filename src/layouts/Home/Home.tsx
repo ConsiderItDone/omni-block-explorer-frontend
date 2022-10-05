@@ -68,19 +68,24 @@ export const LayoutHome: FC = () => {
                 <Spin size="large" />
               ) : (
                 <>
-                  <div>
-                    <h4>Finalized Blocks</h4>
-                    {loading ? <Spin /> : <h3>{numberWithCommas(chainData?.lastFinalizedBlock)}</h3>}
-                  </div>
-                  <div>
-                    <h4>Signed Extrinsics</h4>
-                    {loading ? <Spin /> : <h3>{numberWithCommas(chainData?.signedExtrinsics)}</h3>}
-                  </div>
+                  {chainData?.lastFinalizedBlock && (
+                    <div>
+                      <h4>Finalized Blocks</h4>
+                    </div>
+                  )}
+                  {chainData?.signedExtrinsics && (
+                    <div>
+                      <h4>Signed Extrinsics</h4>
+                      {loading ? <Spin /> : <h3>{numberWithCommas(chainData?.signedExtrinsics)}</h3>}
+                    </div>
+                  )}
                   {window?.innerWidth <= RESPONSIVE_BREAKPOINTS.md && <span className="separator" />}
-                  <div>
-                    <h4>Transfers</h4>
-                    {loading ? <Spin /> : <h3>{numberWithCommas(chainData?.transferCount)}</h3>}
-                  </div>
+                  {chainData?.transferCount && (
+                    <div>
+                      <h4>Transfers</h4>
+                      {loading ? <Spin /> : <h3>{numberWithCommas(chainData?.transferCount)}</h3>}
+                    </div>
+                  )}
                 </>
               )}
             </div>

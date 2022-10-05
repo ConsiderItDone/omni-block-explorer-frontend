@@ -3,6 +3,7 @@ import React, { FC, Suspense, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Spin } from 'antd';
 import { Global } from '@emotion/react';
+import { ToastContainer } from 'react-toastify';
 import { Header, Navigation, Overlay } from 'components';
 import { routedLayouts } from './modules/router';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
@@ -13,6 +14,7 @@ import { getGlobalStyles } from './styles';
 import { useAppInit } from 'utils/hooks';
 import { getCustomRoutes } from './modules/router/customRoutes';
 import AppLoader from 'components/AppLoader/AppLoader';
+import 'react-toastify/dist/ReactToastify.css';
 
 const loadingNode = (
   <div className="spin-container">
@@ -51,6 +53,7 @@ const App: FC = () => {
           </Overlay>
         )}
       </ConfigProvider>
+      <ToastContainer hideProgressBar style={{ width: 'fit-content', whiteSpace: 'break-spaces' }} />
       <Global styles={getGlobalStyles} />
     </ThemeProvider>
   );
