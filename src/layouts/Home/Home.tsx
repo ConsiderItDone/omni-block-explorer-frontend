@@ -12,7 +12,6 @@ import { Table } from 'components';
 import { RESPONSIVE_BREAKPOINTS, ROUTES } from 'utils/consts';
 import { columnsMini as blockColumns, transformBlockItem } from 'layouts/BlocksTable/utils';
 import { transformTransferData, columnsMini as transferColumns } from 'layouts/TransfersTable/utils';
-import './Home.module.styl';
 import { numberWithCommas } from 'utils/funcs';
 import { useErrorDisaply } from 'utils/hooks';
 import { useStyles } from './styles';

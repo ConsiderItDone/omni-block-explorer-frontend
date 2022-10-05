@@ -21,11 +21,11 @@ export const useStyles = () => {
         },
         '.custom_table.transfer >div .primary': { color: 'gray' },
         '.custom_table.transfer >div .secondary': { display: 'block' },
-        '.custom_table.transfer >div:first-child': {
+        '.custom_table.transfer >div:first-of-type': {
           borderRight: '1px solid #27333f',
         },
-        '.custom_table.transfer >div:nth-child(2)': { paddingLeft: '30px' },
-        '.custom_table.transfer >div:last-child': { marginBottom: '0' },
+        '.custom_table.transfer >div:nth-of-type(2)': { paddingLeft: '30px' },
+        '.custom_table.transfer >div:last-of-type': { marginBottom: '0' },
         '.custom_table.transfer >div >div': {
           fontWeight: 500,
           fontSize: '16px',
@@ -43,8 +43,8 @@ export const useStyles = () => {
         ...extrinsicStyles,
         '@media (max-width: 768px)': {
           '.custom_table.transfer >div': { width: '100%', padding: '0' },
-          '.custom_table.transfer >div:first-child': { borderRight: 'none' },
-          '.custom_table.transfer >div:nth-child(2)': {
+          '.custom_table.transfer >div:first-of-type': { borderRight: 'none' },
+          '.custom_table.transfer >div:nth-of-type(2)': {
             padding: '13px 0 16px',
             borderTop: '1px solid #27333f',
             borderBottom: '1px solid #27333f',
@@ -60,11 +60,11 @@ export const useStyles = () => {
             width: '33%',
             padding: '13px 0 13px 15px',
           },
-          '.custom_table.extrinsic .body >div:first-child': {
+          '.custom_table.extrinsic .body >div:first-of-type': {
             width: '100%',
             marginBottom: '16px',
           },
-          '.custom_table.extrinsic .body >div:nth-child(2)': { padding: '13px 0' },
+          '.custom_table.extrinsic .body >div:nth-of-type(2)': { padding: '13px 0' },
         },
       },
     };

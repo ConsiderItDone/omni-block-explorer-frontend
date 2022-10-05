@@ -42,7 +42,7 @@ export const useStyles = () => {
             width: '100% !important',
             padding: '9px 0',
           },
-          '.account-details-wrapper .balance .rest >div:first-child': {
+          '.account-details-wrapper .balance .rest >div:first-of-type': {
             borderLeft: 'none',
             borderRight: 'none',
             borderTop: '1px solid gray',
@@ -114,7 +114,7 @@ export const useStyles = () => {
         display: 'flex',
         alignItems: 'center',
       },
-      '.account-details-wrapper .balance .rest >div:first-child': {
+      '.account-details-wrapper .balance .rest >div::first-of-type': {
         width: 'fit-content',
         paddingRight: '35px',
         marginRight: '25px',

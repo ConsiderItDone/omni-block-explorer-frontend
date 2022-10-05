@@ -10,7 +10,7 @@ export const useStyles = () => {
       '@media (max-width: 768px)': {
         padding: '14px 16px 26px',
         '.head .primary': { gap: '0' },
-        '.head .primary >div:first-child': {
+        '.head .primary >div:first-of-type': {
           paddingRight: '16px',
         },
         '.head .primary h3': { marginBottom: '0' },
@@ -37,11 +37,11 @@ export const useStyles = () => {
           marginBottom: '20px',
         },
       },
-      '.head .primary >div:first-child': {
+      '.head .primary >div:first-of-type': {
         paddingRight: '30px',
         borderRight: '1px solid #27333f',
       },
-      '.head .primary >div:last-child': {
+      '.head .primary >div:last-of-type': {
         padding: '0 16px',
       },
       '.head .primary h3': {
@@ -60,7 +60,7 @@ export const useStyles = () => {
         display: 'flex',
         gap: '10px',
       },
-      '.head .secondary >div >div:first-child': {
+      '.head .secondary >div >div:first-of-type': {
         color: 'gray',
       },
       '.body': {
