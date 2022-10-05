@@ -262,7 +262,7 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
         },
       },
       '.ant-popover-arrow': {
-        display:'none',
+        display: 'none',
         border: '8px solid #2a3541 !important',
         bottom: '0',
         right: '40px',

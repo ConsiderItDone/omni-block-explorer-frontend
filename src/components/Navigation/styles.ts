@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
 import { useThemeUI, ThemeUIStyleObject } from 'theme-ui';
 
-const sharedNavMenuStyles: ThemeUIStyleObject = {};
-
 export const useStyles = () => {
   const { theme: themeUI } = useThemeUI();
 

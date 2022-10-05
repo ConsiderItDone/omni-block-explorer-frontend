@@ -9,7 +9,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import styles from './styles'
+import styles from './styles';
 
 interface IOverlayContext {
   overlayItem?: JSX.Element;

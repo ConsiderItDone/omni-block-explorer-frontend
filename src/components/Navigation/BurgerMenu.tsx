@@ -28,7 +28,11 @@ export default React.memo(() => {
         </div>
         <div className="nav_menu">
           <h3 className="nav_header">
-            <Link to="/" className={`nav_header ${pathname === '/' ? 'active' : ''}`} onClick={() => setOverlayActive(false)}>
+            <Link
+              to="/"
+              className={`nav_header ${pathname === '/' ? 'active' : ''}`}
+              onClick={() => setOverlayActive(false)}
+            >
               Home
             </Link>
           </h3>
