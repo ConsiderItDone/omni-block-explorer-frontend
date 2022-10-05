@@ -114,7 +114,7 @@ export const useStyles = () => {
       '.ant-pagination .ant-pagination-item-active': { borderColor: 'primary' },
       '.ant-pagination .ant-pagination-item-active>*': { color: 'primary' },
       '.ant-table-placeholder .ant-table-cell:hover': {
-        backgroundColor: '#000 !important',
+        backgroundColor: themeUI.colors['window-dark'],
       },
       '.ant-table-placeholder .ant-empty': { color: themeUI.colors.text },
       '.cell-secondary.combined-2': {
