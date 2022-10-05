@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import React, {
   Context,
   createContext,
@@ -8,7 +9,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import './Overlay.styl';
+import styles from './styles'
 
 interface IOverlayContext {
   overlayItem?: JSX.Element;
@@ -30,7 +31,7 @@ const Overlay: FC<PropsWithChildren<any>> = ({ children }) => {
 
   return (
     <OverlayContext.Provider value={{ overlayItem, setOverlayItem, overlayActive, setOverlayActive }}>
-      <div className={`overlay_wrap${overlayActive ? ' active' : ''}`}>
+      <div className={`overlay_wrap${overlayActive ? ' active' : ''}`} sx={styles}>
         {
           <div
             className="overlay_bg"
