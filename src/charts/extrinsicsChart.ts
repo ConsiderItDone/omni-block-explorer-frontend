@@ -1,4 +1,5 @@
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { Theme } from 'theme-ui';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
 
 import {
@@ -12,7 +13,12 @@ import {
   styleAxis,
 } from './utils';
 
-export const generateExtrinsicChart = (chart: am4charts.XYChart, chartData: any, themeUI): void => {
+export const generateExtrinsicChart = (
+  chart: am4charts.XYChart,
+  chartData: any,
+  colorMode: string,
+  themeUI: Theme,
+): void => {
   createTitle(chart, 'Extrinsic History', themeUI);
   attachData(chart, chartData?.extrinsicsChartData);
 
@@ -29,7 +35,7 @@ export const generateExtrinsicChart = (chart: am4charts.XYChart, chartData: any,
 
   const series = createSeries(chart, themeUI, { name: 'Quantity' });
   attachDataFieds(series, { dateX: 'date', valueY: 'quantity' });
-  addTooltip(series);
+  addTooltip(series, false, colorMode, themeUI);
 
   createCursor(chart, { xAxis: dateAxis });
   createLegend(chart, themeUI);

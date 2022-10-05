@@ -3,31 +3,37 @@
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { RESPONSIVE_BREAKPOINTS } from 'utils/consts';
+import { Theme } from 'theme-ui';
 
 export const attachDataFieds = (series: am4charts.ColumnSeries, dataFields: am4charts.IColumnSeriesDataFields) => {
   Object.keys(dataFields).forEach((key) => (series.dataFields[key] = dataFields[key]));
 };
-export const addTooltip = (series: am4charts.ColumnSeries, additional = false) => {
+
+export const addTooltip = (series: am4charts.ColumnSeries, additional = false, colorMode = 'dark', theme?: Theme) => {
+  const valueColor = colorMode === 'light' ? 'black' : 'white';
+
   series.tooltipHTML = `<div style="display: flex; flex-direction: column; padding: 10px 12px 0">
       <div style="margin-bottom: 12px"> 
         <div style="color: #878D94; font-size: 12px; line-height: 18px;">Date</div>
-        <div style="color: white; font-size: 16px; font-weight: 500; line-height: 24px;">{dateX}</div>
+        <div style="color: ${valueColor}; font-size: 16px; font-weight: 500; line-height: 24px;">{dateX}</div>
       </div>
       <div style="margin-bottom: 12px">
         <div style="color: #878D94; font-size: 12px; line-height: 18px;">{name}</div>
-        <div style="color: white; font-size: 16px; font-weight: 500; line-height: 24px;">{valueY}</div>
+        <div style="color: ${valueColor}; font-size: 16px; font-weight: 500; line-height: 24px;">{valueY}</div>
       </div>
       ${
         additional
           ? `<div style="margin-bottom: 12px">
         <div style="color: #878D94; font-size: 12px; line-height: 18px;">Number of Transactions</div>
-        <div style="color: white; font-size: 16px; font-weight: 500; line-height: 24px;">{valueX}</div>
+        <div style="color: ${valueColor}; font-size: 16px; font-weight: 500; line-height: 24px;">{valueX}</div>
       </div>`
           : ''
       }
     </div>`;
+
   series.tooltip.getFillFromObject = false;
-  series.tooltip.background.fill = am4core.color('#24303d');
+  //@ts-ignore
+  series.tooltip.background.fill = am4core.color(theme?.rawColors['window-dark'] || '#24303d');
   series.tooltip.background.opacity = 1;
   series.tooltip.background.cornerRadius = 24;
   series.tooltip.background.strokeOpacity = 0;
@@ -87,6 +93,7 @@ export const createCursor = (chart: am4charts.XYChart, options?: Partial<am4char
   cursor.lineX.disabled = true;
   cursor.lineY.disabled = true;
   cursor.behavior = 'none';
+
   Object.assign(cursor, options);
 };
 
