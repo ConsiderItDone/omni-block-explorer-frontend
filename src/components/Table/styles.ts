@@ -46,10 +46,10 @@ export const useStyles = () => {
         lineHeight: '18px',
         color: 'gray',
       },
-      '.ant-table .ant-table-cell:first-child': {
+      '.ant-table .ant-table-cell:first-of-type': {
         paddingLeft: '0 !important',
       },
-      '.ant-table .ant-table-cell:last-child': {
+      '.ant-table .ant-table-cell:last-of-type': {
         paddingRight: '0 !important',
       },
       '.ant-table th.ant-table-cell': {
@@ -68,7 +68,7 @@ export const useStyles = () => {
       'tbody.ant-table-tbody .ant-table-row .ant-table-cell a': {
         color: themeUI.colors.text,
       },
-      'tbody.ant-table-tbody .ant-table-row:last-child .ant-table-cell': {
+      'tbody.ant-table-tbody .ant-table-row:last-of-type .ant-table-cell': {
         border: 'none',
         paddingBottom: '0 !important',
       },
@@ -114,7 +114,7 @@ export const useStyles = () => {
       '.ant-pagination .ant-pagination-item-active': { borderColor: 'primary' },
       '.ant-pagination .ant-pagination-item-active>*': { color: 'primary' },
       '.ant-table-placeholder .ant-table-cell:hover': {
-        backgroundColor: '#000 !important',
+        backgroundColor: themeUI.colors['window-dark'],
       },
       '.ant-table-placeholder .ant-empty': { color: themeUI.colors.text },
       '.cell-secondary.combined-2': {

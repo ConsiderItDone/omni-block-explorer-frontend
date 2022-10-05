@@ -252,14 +252,17 @@ export const getGlobalStyles = (theme: Theme): Interpolation<Theme> => ({
       maxWidth: '600px',
       wordBreak: 'break-all',
       borderRadius: '24px',
+      border: '1px solid',
+      borderColor: theme.colors.primary,
       overflow: 'hidden',
       '.ant-popover-inner': {
-        background: '#2a3541',
+        background: theme.colors['window-dark'],
         '.ant-popover-inner-content': {
           color: theme.colors.text,
         },
       },
       '.ant-popover-arrow': {
+        display: 'none',
         border: '8px solid #2a3541 !important',
         bottom: '0',
         right: '40px',

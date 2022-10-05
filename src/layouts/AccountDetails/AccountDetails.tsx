@@ -19,6 +19,7 @@ const AccountDetails: FC = () => {
   const { accountAddress } = useParams();
   const { data, loading, error } = useQuery<AccountByAddress>(ACCOUNTBYADDRESS, {
     variables: { address: accountAddress },
+    errorPolicy: 'ignore',
   });
   const styles = useStyles();
 

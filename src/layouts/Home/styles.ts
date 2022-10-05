@@ -69,10 +69,10 @@ export const useStyles = () => {
             paddingLeft: '32px',
             width: '25%',
             borderRight: '1px solid #27333F',
-            '&:first-child': {
+            '&::first-of-type': {
               padding: 0,
             },
-            '&:last-child': {
+            '&:last-of-type': {
               borderRight: 'none',
             },
           },
@@ -101,20 +101,20 @@ export const useStyles = () => {
             { '.separator': { marginBottom: '0' } },
             {
               '>div': { width: '50%', border: 'none', padding: '0 !important' },
-              '>div:first-child,\n  >div:nth-child(2)': {
+              '>div:first-of-type,\n  >div:nth-of-type(2)': {
                 marginBottom: '0',
                 borderTop: '1px solid #27333f',
               },
-              '>div:nth-child(odd)': { paddingRight: '15px' },
+              '>div:nth-of-type(odd)': { paddingRight: '15px' },
               '>div h4': { marginTop: '14px', marginBottom: '0' },
               '>div h3': { fontSize: '16px', lineHeight: '24px', marginBottom: '14px' },
             },
           ],
           '@media (max-width: 768px)': {
             '>div': { width: '50%', padding: '0' },
-            '>div:first-child,\n  >div:nth-child(2)': { marginBottom: '20px' },
-            '>div:nth-child(2)': { borderRight: 'none' },
-            '>div:nth-child(2),\n  >div:nth-child(5)': { paddingLeft: '20px' },
+            '>div:first-of-type,\n  >div:nth-of-type(2)': { marginBottom: '20px' },
+            '>div:nth-of-type(2)': { borderRight: 'none' },
+            '>div:nth-of-type(2),\n  >div:nth-of-type(5)': { paddingLeft: '20px' },
           },
         },
       },

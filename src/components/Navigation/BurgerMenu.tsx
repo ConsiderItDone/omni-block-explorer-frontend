@@ -20,7 +20,7 @@ export default React.memo(() => {
 
   const navigation = useMemo(
     () => (
-      <nav className="mobile" onClick={(e) => e.stopPropagation()}>
+      <nav className="mobile" sx={styles.mobileNav} onClick={(e) => e.stopPropagation()}>
         <div className="logo">
           <Link to="/" onClick={() => setOverlayActive(false)}>
             <img src={process.env.REACT_APP_LOGO_SRC} />
@@ -28,7 +28,11 @@ export default React.memo(() => {
         </div>
         <div className="nav_menu">
           <h3 className="nav_header">
-            <Link to="/" className="nav_header" onClick={() => setOverlayActive(false)}>
+            <Link
+              to="/"
+              className={`nav_header ${pathname === '/' ? 'active' : ''}`}
+              onClick={() => setOverlayActive(false)}
+            >
               Home
             </Link>
           </h3>

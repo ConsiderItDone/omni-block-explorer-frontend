@@ -33,7 +33,7 @@ export const useStyles = () => {
         alignItems: 'center',
         gap: '10px',
       },
-      '.custom_table.block .head .secondary >div >div:first-child': {
+      '.custom_table.block .head .secondary >div >div:first-of-type': {
         color: 'gray',
       },
       '.custom_table.block .body': {
@@ -56,11 +56,11 @@ export const useStyles = () => {
           },
         },
         {
-          '.custom_table.block .body >div:nth-child(1),\n  .custom_table.block .body >div:nth-child(2)': {
+          '.custom_table.block .body >div:nth-of-type(1),\n  .custom_table.block .body >div:nth-of-type(2)': {
             borderTop: 'none',
           },
           '.custom_table.block .body >div': { borderBottom: '1px solid #27333f' },
-          '.custom_table.block .body >div:last-child': { borderBottom: 'none' },
+          '.custom_table.block .body >div:last-of-type': { borderBottom: 'none' },
         },
       ],
       '.custom_table.block .body >div .primary,\n.custom_table.block .body >div .secondary': {
@@ -79,9 +79,9 @@ export const useStyles = () => {
         gap: '10px',
       },
       '.custom_table.block .body >div a': { display: 'block' },
-      '.custom_table.block .body >div:nth-child(odd)': { paddingRight: '5%' },
-      '.custom_table.block .body >div:nth-child(even)': { paddingLeft: '5%' },
-      '.custom_table.block .body >div:nth-child(1),\n.custom_table.block .body >div:nth-child(2)': {
+      '.custom_table.block .body >div:nth-of-type(odd)': { paddingRight: '5%' },
+      '.custom_table.block .body >div:nth-of-type(even)': { paddingLeft: '5%' },
+      '.custom_table.block .body >div:nth-of-type(1),\n.custom_table.block .body >div:nth-of-type(2)': {
         borderTop: '1px solid #27333f',
         borderBottom: '1px solid #27333f',
       },
