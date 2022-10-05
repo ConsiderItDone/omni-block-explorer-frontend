@@ -54,7 +54,7 @@ export const columns = generateColumns(blockTableItem, {
   },
   hash: { responsive: ['md'], width: 'auto', ellipsis: true },
   finalized: {
-    width: 45,
+    width: 50,
     title: 'Status',
     align: 'center',
     render: (val) => (val ? <ImgOk /> : <img src={imgPending} alt="status" />),
