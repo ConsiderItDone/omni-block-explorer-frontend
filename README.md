@@ -1,4 +1,4 @@
-# nodle-frontend
+# Omni Block Explorer
 
 # Development
 
