@@ -2,7 +2,7 @@
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
-import { am4themes_nodle } from './theme';
+import { am4themes_omni } from './theme';
 import React, { useLayoutEffect } from 'react';
 import { createLegend, styleChart } from './utils';
 import { generateExtrinsicChart } from './extrinsicsChart';
@@ -29,7 +29,7 @@ export const useChart = (
   return useLayoutEffect(() => {
     const chart = am4core.create(containerId, am4charts.XYChart);
 
-    am4core.useTheme((theme) => am4themes_nodle(theme, themeUI));
+    am4core.useTheme((theme) => am4themes_omni(theme, themeUI));
 
     chartOperations.common(chart, themeUI);
     chartOperations[type](chart, chartData, colorMode, themeUI);
